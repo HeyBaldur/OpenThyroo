@@ -1,0 +1,310 @@
+<div *ngIf="displayAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+  <p class="p-sm-12">
+    <strong>Success!</strong> Your post has been published successfully,
+    clike <a [routerLink]="['/feed/single/', this.postId]" routerLinkActive="router-link-active">here</a>
+    to check your post.
+  </p>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+<a class="text-danger new-post pointer" data-toggle="modal" data-target="#addPost">
+  <div class="card">
+    <div class="card-body">
+      <p class="p-sm-12 text-muted">
+        <img class="userAvatar" src="{{currentUser.photoUrl}}">
+        {{currentUser.providerFullName}}
+      </p>
+      <h5 class="card-subtitle mb-2 text-muted">
+        <strong>What's your question/post?</strong>
+      </h5>
+    </div>
+  </div>
+</a>
+
+<!-- Modal -->
+<div class="modal" id="addPost" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add a question/post</h5>
+        <a class="pointer" class="close" data-dismiss="modal" aria-label="Close">
+          <span class="pointer" aria-hidden="true">&times;</span>
+        </a>
+      </div>
+      <form [formGroup]="addPostForm">
+        <div class="modal-body">
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+              <div class="mb-2">
+                <label *ngIf="displayAlert">
+                  Do you want to add another post? <br>
+                  <a class="pointer text-muted" data-toggle="collapse" href="#addCollapse" role="button"
+                    aria-expanded="false" aria-controls="addCollapse">
+                    <small>
+                      <b>
+                        No, thank you
+                        <i class="far fa-times-circle"></i>
+                      </b>
+                    </small>
+                  </a>
+                </label>
+                <small class="form-text text-muted mb-2">
+                  Be specific in your post to let other people know about your intentions and your business idea or
+                  sharing.
+                  Remember this post is public and the entire community will be able to see it. Good luck!
+                  <span class="text-danger">*</span>
+                </small>
+
+                <!-- <h6 *ngIf="!loader" class="label-thyroo mt-1">
+                  <strong>Adding your question/post...</strong>
+                </h6> -->
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <input type="text" class="form-control mb-1" placeholder="Add a title" formControlName="title"
+                      name="title" required autocomplete="off" autofocus="off">
+                    <p class="mt-1 text-danger text-sm" *ngIf="(addPostForm.controls['title'].dirty || addPostForm.controls['title'].touched) && 
+                    addPostForm.controls['title'].hasError('required')">
+                      Title is required
+                    </p>
+                  </div>
+                </div>
+
+                <quill-editor formControlName="description" [required]="true">
+                  <div quill-editor-toolbar>
+                    <span class="ql-formats">
+                      <button class="ql-bold" [title]="'Bold'"></button>
+                    </span>
+                    <span class="ql-formats">
+                      <!-- <select class="ql-size">
+                        <option value="small"></option>
+                        <option selected></option>
+                        <option value="large"></option>
+                      </select> -->
+                      <select class="ql-align" [title]="'Aligment'">
+                        <option selected></option>
+                        <option value="center"></option>
+                        <option value="right"></option>
+                        <option value="justify"></option>
+                      </select>
+                      <select class="ql-align" [title]="'Aligment2'">
+                        <option selected></option>
+                        <option value="center"></option>
+                        <option value="right"></option>
+                        <option value="justify"></option>
+                      </select>
+                    </span>
+                    <span class="ql-formats">
+                      <button type="button" class="ql-code-block">
+                        <svg viewBox="0 0 18 18">
+                          <polyline class="ql-even ql-stroke" points="5 7 3 9 5 11"></polyline>
+                          <polyline class="ql-even ql-stroke" points="13 7 15 9 13 11"></polyline>
+                          <line class="ql-stroke" x1="10" x2="8" y1="5" y2="13"></line>
+                        </svg>
+                      </button>
+                    </span>
+                    <span class="ql-formats"><button type="button" class="ql-link"><svg viewBox="0 0 18 18">
+                          <line class="ql-stroke" x1="7" x2="11" y1="7" y2="11"></line>
+                          <path class="ql-even ql-stroke"
+                            d="M8.9,4.577a3.476,3.476,0,0,1,.36,4.679A3.476,3.476,0,0,1,4.577,8.9C3.185,7.5,2.035,6.4,4.217,4.217S7.5,3.185,8.9,4.577Z">
+                          </path>
+                          <path class="ql-even ql-stroke"
+                            d="M13.423,9.1a3.476,3.476,0,0,0-4.679-.36,3.476,3.476,0,0,0,.36,4.679c1.392,1.392,2.5,2.542,4.679.36S14.815,10.5,13.423,9.1Z">
+                          </path>
+                        </svg></button><button type="button" class="ql-video"><svg viewBox="0 0 18 18">
+                          <rect class="ql-stroke" height="12" width="12" x="3" y="3"></rect>
+                          <rect class="ql-fill" height="12" width="1" x="5" y="3"></rect>
+                          <rect class="ql-fill" height="12" width="1" x="12" y="3"></rect>
+                          <rect class="ql-fill" height="2" width="8" x="5" y="8"></rect>
+                          <rect class="ql-fill" height="1" width="3" x="3" y="5"></rect>
+                          <rect class="ql-fill" height="1" width="3" x="3" y="7"></rect>
+                          <rect class="ql-fill" height="1" width="3" x="3" y="10"></rect>
+                          <rect class="ql-fill" height="1" width="3" x="3" y="12"></rect>
+                          <rect class="ql-fill" height="1" width="3" x="12" y="5"></rect>
+                          <rect class="ql-fill" height="1" width="3" x="12" y="7"></rect>
+                          <rect class="ql-fill" height="1" width="3" x="12" y="10"></rect>
+                          <rect class="ql-fill" height="1" width="3" x="12" y="12"></rect>
+                        </svg></button></span>
+                  </div>
+                </quill-editor>
+                <p class="mt-1 text-danger text-sm" *ngIf="(addPostForm.controls['description'].dirty || addPostForm.controls['description'].touched) && 
+                  addPostForm.controls['description'].hasError('required')">
+                  This field is required
+                </p>
+                <div class="row mt-2">
+                  <div class="col-md-3 col-sm-12" *ngFor="let category of categories">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" formControlName="categoryId" name="categoryId" id="cat-{{category.id}}" value="{{category.id}}" checked>
+                      <label class="form-check-label" for="cat-{{category.id}}">
+                        <div class="chip mb-1">
+                          <img src="{{category.photoUrl}}" alt="{{category.name}}" width="96" height="96" class="border">
+                          {{category.name}}
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a type="button" class="text-sm text-muted ml-2 text-500" (click)="resetForm()" data-dismiss="modal">Cancel</a>
+          <button type="button" class="btn btn-thyroo btn-sm" (click)="createPost()" data-dismiss="modal"
+            [disabled]="addPostForm.invalid">
+            <span class="mr-3 ml-3 text-sm">
+              Add question/post
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <a class="text-danger new-post" data-toggle="collapse" href="#addCollapse" role="button" aria-expanded="false"
+  aria-controls="addCollapse">
+  <div class="card">
+    <div class="card-body">
+      <p class="p-sm-12 text-muted">
+        <img class="userAvatar" src="{{currentUser.photoUrl}}">
+        {{currentUser.providerFullName}}
+      </p>
+      <h5 class="card-subtitle mb-2 text-muted">
+        <strong>What's your question/post?</strong>
+      </h5>
+    </div>
+  </div>
+</a>
+
+<div class="collapse mt-2" id="addCollapse">
+  <div class="card card-body">
+    <form [formGroup]="addPostForm">
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+          <div class="mb-2">
+            <label *ngIf="displayAlert">
+              Do you want to add another post? <br>
+              <a class="pointer text-muted" data-toggle="collapse" href="#addCollapse" role="button"
+                aria-expanded="false" aria-controls="addCollapse">
+                <small>
+                  <b>
+                    No, thank you
+                    <i class="far fa-times-circle"></i>
+                  </b>
+                </small>
+              </a>
+            </label>
+            <small class="form-text text-muted mb-2">
+              Be specific in your post to let other people know about your intentions and your business idea or sharing.
+              Remember this post is public and the entire community will be able to see it. Good luck!
+              <span class="text-danger">*</span>
+            </small>
+
+            <input type="text" class="form-control mb-1" placeholder="Add a title" formControlName="title" name="title"
+              required>
+            <p class="mt-1 text-danger text-sm" *ngIf="addPostForm.controls['title'].dirty || addPostForm.controls['title'].touched && 
+              addPostForm.controls['title'].hasError('required')">
+              Title is required
+            </p>
+
+            <quill-editor formControlName="description" [required]="true">
+              <div quill-editor-toolbar>
+                <span class="ql-formats">
+                  <button class="ql-bold" [title]="'Bold'"></button>
+                </span>
+                <span class="ql-formats">
+                  <select class="ql-size">
+                    <option value="small"></option>
+                    <option selected></option>
+                    <option value="large"></option>
+                  </select>
+                  <select class="ql-align" [title]="'Aligment'">
+                    <option selected></option>
+                    <option value="center"></option>
+                    <option value="right"></option>
+                    <option value="justify"></option>
+                  </select>
+                  <select class="ql-align" [title]="'Aligment2'">
+                    <option selected></option>
+                    <option value="center"></option>
+                    <option value="right"></option>
+                    <option value="justify"></option>
+                  </select>
+                </span>
+                <span class="ql-formats">
+                  <button type="button" class="ql-code-block">
+                    <svg viewBox="0 0 18 18">
+                      <polyline class="ql-even ql-stroke" points="5 7 3 9 5 11"></polyline>
+                      <polyline class="ql-even ql-stroke" points="13 7 15 9 13 11"></polyline>
+                      <line class="ql-stroke" x1="10" x2="8" y1="5" y2="13"></line>
+                    </svg>
+                  </button>
+                </span>
+              </div>
+            </quill-editor>
+
+            <p class="mt-1 text-danger text-sm" *ngIf="addPostForm.controls['description'].dirty || addPostForm.controls['description'].touched && 
+              addPostForm.controls['description'].hasError('required')">
+              This field is required
+            </p>
+            <div class="row">
+              <div class="col-md-6">
+                <p class="form-text text-muted">
+                  Choose a category to reach more people
+                  <span class="text-danger">*</span>
+                </p>
+                <select class="form-control form-control-sm mt-1" formControlName="categoryId">
+                  <option *ngFor="let category of categories" value="{{category.id}}">
+                    {{category.name}}
+                  </option>
+                </select>
+                <h6 *ngIf="loader" class="label-thyroo mt-1">
+                  <strong>Adding your question/post...</strong>
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="btn-toolbar">
+
+        <a [routerLink]="['/articles/new']" class="text-thyroo mr-auto">
+          <small>
+            <strong>Add article</strong>
+            <span class="text-100"> on Thyroo</span>
+            BETA
+          </small>
+        </a>
+
+        <div class="btn-group float-right">
+          <button type="submit" (click)="createPost()" [disabled]="addPostForm.invalid"
+            class="btn btn-thyroo btn-sm border-30">
+            <small class="ml-3 mr-3">
+              <b>Share post</b>
+            </small>
+          </button>
+
+          <button class="btn btn-outline-secondary btn-sm" data-toggle="collapse" href="#addCollapse" role="button"
+            aria-expanded="false" aria-controls="addCollapse">
+            <small class="ml-3 mr-3">
+              <b>Close window</b>
+            </small>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div> -->

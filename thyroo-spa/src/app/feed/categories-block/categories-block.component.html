@@ -1,0 +1,18 @@
+<div>
+  <div class="h5">@<strong>Thyroo.com</strong></div>
+  <p class="p-sm-12 text-muted">
+    Thyroo offers a category list to help professionals to target their audience easily and effortlessly, however,
+    Thyroo members can enjoy the updates, shared information, articles, and more.
+  </p>
+  <hr>
+
+  <div *ngFor="let category of categories">
+    <a [routerLink]="['/feed/topic/', category.id]" class="text-muted pointer">
+      <div class="chip mb-1">
+        <img src="{{category.photoUrl}}" alt="{{category.name}}" width="96" height="96" class="border">
+        {{category.name}}
+      </div>
+    </a>
+  </div>
+  <app-aside-skeleton-loader *ngIf="skeleton"></app-aside-skeleton-loader>
+</div>

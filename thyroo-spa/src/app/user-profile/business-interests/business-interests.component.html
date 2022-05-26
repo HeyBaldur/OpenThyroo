@@ -1,0 +1,50 @@
+<app-add-business-interests (outputResult)="addBusinessPreferences($event)"></app-add-business-interests>
+<div class="my-1 p-1 border bg-white rounded shadow-sm">
+  <div class="col-md-12 mt-1">
+    <h5>
+      <i class="fas fa-briefcase text-muted"></i>
+      Business of interest
+    </h5>
+    <p class="text-muted text-sm">The business interests are very important to let other users know about what are you looking
+      for or what are you willing for. We strongly recommend you to choose a business of interests, profile type,
+      and subtype, this will allow you to connect with the right people.
+      If you need to find <strong>business profiles</strong> just click
+      <a [routerLink]="['/user/b/search']">here</a> 
+    </p>
+  </div>
+</div>
+
+<div class="row" *ngIf="serverError">
+  <div class="col-md-12">
+    <app-server-error></app-server-error>
+  </div>
+</div>
+<div class="row mt-1 business-interests">
+  <div class="col-md-6" *ngFor="let item of businessInterest">
+    <div class="card mt-1">
+      <div class="badge-thyroo">
+        <span class="badge-thyroo-content">
+          Business of interests
+          <a class="pointer float-right text-white" (click)="deleteConfirm(item.id)">
+            <i class="far fa-trash-alt"></i>
+          </a>
+          <span class="float-right mr-4">
+            <app-full-screen-loader *ngIf="loaderItem && (item.id == itemId)"></app-full-screen-loader>
+          </span>
+        </span>
+      </div>
+      <div class="card-body">
+        <app-delete-business-preference-confirmation [itemId]="item.id" [referenceId]="referenceId"
+          [deleteConfirmation]="deleteConfirmFlag" (itemToRemove)="deleteItem($event)"
+          (visibleChange)="cancelDeleting($event)"></app-delete-business-preference-confirmation>
+        <p class="text-muted">
+          <small><strong>Business of interest:</strong> {{item.businessOfInterest.name}}</small><br>
+          <small><strong>Looking for: </strong> {{item.profileTypes.name}}</small><br>
+          <small><strong>Profile sub-type: </strong> {{item.profileSubTypes.name}}</small>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-full-screen-loader *ngIf="loaderPage"></app-full-screen-loader>

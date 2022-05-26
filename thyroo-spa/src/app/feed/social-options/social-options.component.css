@@ -1,0 +1,42 @@
+.social-count {
+    margin-left: auto;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: stretch;
+    align-items: stretch
+  }
+  
+  .social-count .shares-count,
+  .social-count .comments-count,
+  .social-count .likes-count {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -ms-flex-align: center;
+    align-items: center;
+    margin: 0 3px
+  }
+  
+  .card.is-post .content-wrap .card-footer .social-count .shares-count span,
+  .card.is-post .content-wrap .card-footer .social-count .comments-count span,
+  .card.is-post .content-wrap .card-footer .social-count .likes-count span {
+    display: block;
+    font-size: .9rem;
+    color: #888da8;
+    margin: 0 5px
+  }
+  
+  .card.is-post .content-wrap .card-footer .social-count .shares-count svg,
+  .card.is-post .content-wrap .card-footer .social-count .comments-count svg,
+  .card.is-post .content-wrap .card-footer .social-count .likes-count svg {
+    height: 18px;
+    width: 18px;
+    stroke: #888da8
+  }
+
+  .share {
+    position: absolute;
+    margin-left: 90%;
+    font-weight: 500;
+  }

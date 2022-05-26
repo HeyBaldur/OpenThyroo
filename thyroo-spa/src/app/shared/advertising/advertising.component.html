@@ -1,0 +1,20 @@
+<div class="alert alert-light border alert-dismissible fade show" role="alert" *ngIf="item">
+  <div>
+    <a (click)="clickOnLink()" href="{{item.url}}" target="_blank" class="text-100 text-muted">
+      <small>Promoted by {{item.sponsoredBy}}</small>
+    </a><br>
+    <p class="text-sponsored"><strong class="text-dark">
+      {{item.title}}
+    </strong></p>
+    <p class="text-sm text-sponsored">
+      {{item.description}}
+    </p>
+    <a (click)="clickOnLink()" href="{{item.url}}" target="_blank" class="text-muted">
+      <i class="fas fa-external-link-alt"></i>
+      Learn more
+    </a>
+  </div>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>

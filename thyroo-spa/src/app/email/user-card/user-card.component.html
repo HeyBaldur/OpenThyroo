@@ -1,0 +1,30 @@
+<div *ngIf="profile">
+  <div class="card card-widget widget-user-2">
+    <div class="widget-user-header">
+      <div class="widget-user-image">
+        <img class="img-circle elevation-2" src="{{profile.photoUrl}}" alt="{{profile.knowAs}}">
+      </div>
+      <h4 class="widget-user-username">
+        <a [routerLink]="['/user/', userId]" routerLinkActive="router-link-active">{{profile.knowAs}}</a>
+        <app-verfied-badge *ngIf="profile.profileVerified"></app-verfied-badge>
+      </h4>
+      <h6 class="widget-user-desc" *ngIf="!profile.emailContactHidden">{{profile.emailContact}}</h6>
+      <h6 class="widget-user-desc text-muted" *ngIf="profile.emailContactHidden">
+        <small>The contact email isprivate</small>
+      </h6>
+      <p class="widget-user-desc text-sm text-muted from">From: {{profile.city}}</p>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isError" class="m-4">
+  <div class="text-danger">
+    <p class="text-500">
+      <i class="fas fa-minus-circle"></i>
+      Cannot display preview. The requested user does not exist or has not created business profile yet.
+      <a [routerLink]="['/email/inbox']">Return to home</a>
+    </p>
+  </div>
+</div>
+
+<app-full-screen-loader *ngIf="loader"></app-full-screen-loader>

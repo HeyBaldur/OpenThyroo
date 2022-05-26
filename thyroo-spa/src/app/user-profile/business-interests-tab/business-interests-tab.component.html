@@ -1,0 +1,56 @@
+<app-navigation></app-navigation>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 pr-1">
+      <div class="card card-widget bg-white mt-1 border widget-user-2">
+        <div class="widget-user-header">
+          <div class="widget-user-image">
+            <img class="img-circle elevation-2 img-profile" src="{{currentUser.photoUrl}}" alt="{{currentUser.providerFullName}}">
+          </div>
+          <h4 class="widget-user-username">
+            {{currentUser.providerFullName}}
+            <app-verified-badge-sm *ngIf="currentUser.verifiedAccount"></app-verified-badge-sm>
+          </h4>
+          <h6 class="widget-user-desc">{{currentUser.emailAddress}} <span class="text-100">Member since {{currentUser.enrollmentDate | timeAgo}}</span></h6>
+        </div>
+      </div>
+
+      <ul class="nav nav-tabs p-sm-12 mt-1" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link text-muted" id="home-tab" data-toggle="tab" [routerLink]="['/profile']" role="tab" aria-controls="home"
+            aria-selected="true">
+            Business profile
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active text-muted" id="profile-tab" data-toggle="tab" role="tab" aria-controls="profile"
+            aria-selected="false">
+            Business interest
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-muted" id="contact-tab" data-toggle="tab" [routerLink]="['/profile/articles']" routerLinkActive="router-link-active" role="tab" aria-controls="contact"
+            aria-selected="false">
+            My articles
+          </a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <!--Nothing to display here-->
+        </div>
+        <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+          <app-business-interests></app-business-interests>
+        </div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+          component 3
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-4 pl-1">
+      <app-latest-users></app-latest-users>
+      <app-help-links></app-help-links>
+    </div>
+  </div>
+</div>

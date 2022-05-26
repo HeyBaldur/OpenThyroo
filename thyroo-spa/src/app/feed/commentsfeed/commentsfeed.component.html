@@ -1,0 +1,118 @@
+<div *ngIf="commentsArray">
+  <div class="card-comment" *ngFor="let comment of commentsArray">
+    <img class="img-circle img-sm border" src="{{comment.user.photoUrl}}" alt="{{comment.user.providerFullName}}">
+    <div class="comment-text">
+      <span class="username">
+        <a [routerLink]="['/user/', comment.user?.id]" class="comment-username text-secondary">
+          {{comment.user.providerFullName}}
+          <app-verified-badge-sm *ngIf="comment.user.verifiedAccount"></app-verified-badge-sm>
+        </a>
+        <span class="text-muted float-right">
+          {{comment.created | timeAgo}}
+          <span class="p-sm-12 delete-comment" *ngIf="comment.userId === currentUserId">
+            <a class="pointer text-muted" (click)="removeCommentConfim(comment.id)">
+              |
+              <i class="far fa-trash-alt"></i>
+            </a>
+          </span>
+        </span>
+        <!--Delete post confirmation-->
+        <div class="alert alert-secondary mt-2" role="alert"
+          *ngIf="deleteConfirmation && (comment.userId === currentUserId) && commentId === comment.id">
+          <p class="p-sm-12">
+            Are you sure to delete this post? Please reconsider your deleting, your post might help other
+            people as other people has helped you.
+          </p>
+          <button class="btn btn-outline-dark btn-sm border-30" (click)="removeComment(comment.id, itemId)">
+            <small class="mr-3 ml-3">
+              <b>Yes, delete</b>
+            </small>
+          </button>
+          <button class="btn btn-dark btn-sm ml-1 border-30" (click)="cancelCommentDeleting()">
+            <small class="mr-3 ml-3">
+              <b>Cancel</b>
+            </small>
+          </button>
+        </div>
+        <!--Delete post confirmation-->
+      </span>
+      <p class="comment">
+        <span [innerHTML]="comment.description"></span>
+      </p>
+      <div class="pb-4">
+        <a class="text-muted btn-reply pointer" (click)="reply(true, comment.id)">
+          <svg width="24px" height="24px" viewBox="0 0 24 24">
+            <g id="reply" class="icon_svg-stroke" stroke="#666" fill="none" stroke-width="1.5" fill-rule="evenodd"
+              stroke-linejoin="round" transform="translate(3.000000, 4.000000)">
+              <path
+                d="M9.000105,-1.000105 L1.00010503,8.77767273 L6.33343837,8.77767273 C6.78266665,10.7041069 7.5048889,12.2782512 8.500105,13.5001056 C9.4953212,14.72196 10.9953212,15.8886267 13.000105,17.0001056 C12.3415905,15.6668556 11.8428105,14.1668556 11.5037651,12.5001056 C11.1647197,10.8333556 11.2190553,9.59254473 11.6667717,8.77767273 L17.000105,8.77767273 L9.000105,-1.000105 Z"
+                id="Path"
+                transform="translate(9.000105, 8.000000) scale(-1, 1) rotate(90.000000) translate(-9.000105, -8.000000) ">
+              </path>
+            </g>
+          </svg>
+          Reply
+        </a>
+
+        <form *ngIf="showHideReplyInput && comment.id === commentToReplyId" [formGroup]="replyForm"
+          (keydown)="addReply(comment.id, comment.userId, comment.postId, $event)">
+          <div>
+            <input maxlength="400" autocomplete="off" autofocus="off" formControlName="description" name="description"
+              class="form-control form-control-sm" value="@{{comment.user.providerFullName}} "
+              placeholder="Hit enter to reply">
+            <a (click)="reply(false, comment.id)" class="text-sm text-muted pointer float-right mt-0 text-close">Close
+              reply
+              box</a>
+          </div>
+        </form>
+      </div>
+
+      <blockquote class="mt-1" cite="https://www.huxley.net/bnw/four.html"
+        *ngFor="let replies of comment.commentsReplies; let i = index">
+        <div class="card-comment reply-item card-reply">
+          <img class="img-circle img-sm border" src="{{replies.user.photoUrl}}" alt="{{replies.user.providerFullName}}">
+          <div class="comment-text">
+            <span class="username">
+              <a [routerLink]="['/user/', replies.user.id]" class="comment-username text-secondary">
+                {{replies.user.providerFullName}}
+                <app-verified-badge-sm *ngIf="replies.user.verifiedAccount"></app-verified-badge-sm>
+              </a>
+              <span class="text-muted float-right">
+                {{replies.created | timeAgo}}
+                <span class="p-sm-12 delete-comment" *ngIf="replies.userId === currentUserId">
+                  <a class="pointer text-muted" (click)="removeReplyConfim(replies.id)">
+                    |
+                    <i class="far fa-trash-alt"></i>
+                  </a>
+                </span>
+              </span>
+            </span>
+            <p class="comment">
+              {{replies.description}}
+            </p>
+            <!--Delete post confirmation-->
+            <div class="alert alert-secondary mt-2" role="alert"
+              *ngIf="deleteReplyConfirmation && (replies.userId === currentUserId) && replyId === replies.id">
+              <p class="text-sm">
+                Are you sure to delete this reply? Please reconsider your deleting, your post might help other
+                people as other people has helped you.
+              </p>
+              <button class="btn btn-outline-dark btn-sm border-30"
+                (click)="removeReply(replies.id, replies.commentId)">
+                <small class="mr-3 ml-3">
+                  <b>Yes, delete</b>
+                </small>
+              </button>
+              <button class="btn btn-dark btn-sm ml-1 border-30" (click)="cancelReplyDeleting(false)">
+                <small class="mr-3 ml-3">
+                  <b>Cancel</b>
+                </small>
+              </button>
+            </div>
+            <!--Delete post confirmation-->
+          </div>
+        </div>
+      </blockquote>
+    </div>
+  </div>
+</div>

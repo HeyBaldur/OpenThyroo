@@ -1,0 +1,137 @@
+<app-navigation></app-navigation>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="h5"><strong>Search users</strong></div>
+      <p class="p-sm-12 text-muted">
+        Thyroo is a web application that connects business people, software developers, 
+        architects or any other professional by a strong algorithm avoiding wrong connections, 
+        chatting or messaging with people who do not have anything in common with. 
+      </p>
+      <hr>
+    </div>
+    <div class="col-md-6 pr-1">
+      <app-search-categories-modal (outputResult)="setParamsValues($event)"></app-search-categories-modal>
+      <div class="card mt-2" *ngIf="userEmptyFlag">
+        <h5 class="card-header">
+          <i class="fas fa-exclamation-triangle"></i>
+          No matches found
+        </h5>
+        <div class="card-body">
+          <p class="card-text">
+            {{userEmptyMessage}}
+          </p>
+          <p class="text-sm">
+            Are we still missing something in our results? Check out our leaderboard to see if
+            it's already on our community's most requested icons list.
+          </p>
+        </div>
+      </div>
+
+      <div class="card mt-1">
+        <div class="card-body shadow-sm">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="my-1 p-0 bg-white rounded">
+                <h6 class="border-bottom border-gray pb-2 mb-0">
+                  We have found ({{userList?.length}}) results
+                  <a (click)="refreshResults()" class="pointer text-thyroo float-right">
+                    <small>
+                      <strong>
+                        <i class="fas fa-redo-alt"></i>
+                        Refresh results
+                      </strong>
+                    </small>
+                  </a>
+                </h6>
+                <div class="media text-muted pt-0" *ngFor="let user of userList">
+                  <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                      <div class="card is-post post-list">
+                        <div class="content-wrap">
+                          <div class="card-heading">
+                            <div class="user-block">
+                              <div class="image">
+                                <a [routerLink]="['/user/', user.businessProfile.userId]" target="_blank">
+                                  <img src="{{user.businessProfile.photoUrl}}" data-user-popover="1" class="border">
+                                </a>
+                              </div>
+                              <div class="user-info">
+                                <a [routerLink]="['/user/', user.businessProfile.userId]" target="_blank">
+                                  {{user.businessProfile.knowAs}}
+                                  <app-verified-badge-sm *ngIf="user.businessProfile.profileVerified">
+                                  </app-verified-badge-sm><br>
+                                  <strong *ngIf="user.businessProfile.profileVerified">
+                                    Trusted and verified user
+                                  </strong>
+                                </a>
+                                <span class="time">
+                                  <span class="d-block occupation-title">{{user.businessProfile.occupation}}<br>
+                                    <span class="text-muted">
+                                      {{user.businessProfile.city}}
+                                    </span>
+                                  </span>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <a class="btn btn-thyroo btn-sm" [routerLink]="['/user/', user.businessProfile.userId]" target="_blank">
+                        <span class="ml-3 mr-3">
+                          <small><b>View profile</b></small>
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <pagination class="mt-2" [boundaryLinks]="true" [totalItems]="pagination.totalItems"
+        [itemsPerPage]="pagination.itemsPerPage" [(ngModel)]="pagination.currentPage"
+        (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+        lastText="&raquo;">
+      </pagination>
+
+    </div>
+    <div class="col-md-3 pl-1">
+
+      <!-- <div class="card">
+        <div class="card-body">
+          <h6>Search users by:</h6>
+          <div>
+            <input [(ngModel)]="knownAs" type="email" class="form-control form-control-sm mt-2"
+              placeholder="Enter name and/or lastname">
+            <button (click)="searchByKnownAs(knownAs)" type="button" class="btn btn-outline-thyroo btn-sm mt-2">
+              <span class="mr-3 ml-3">
+                <small><b>Search users</b></small>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-title">How can I connect with other users?</h6>
+          <p class="card-text text-sm text-muted">
+            Thyroo.com thinks in people’s time, so we have developed a smart way for you to
+            communicate with matches once you are allowed to it. We have created a email box where
+            you will be able to communicate with your matches, remember that you can send messages
+            to the users that you have matched each other. You are not allowed to send a message
+            to any user.
+          </p>
+        </div>
+      </div>
+      <!--Help link-->
+      <app-help-links></app-help-links>
+    </div>
+  </div>
+
+
+  <app-full-screen-loader *ngIf="loader"></app-full-screen-loader>

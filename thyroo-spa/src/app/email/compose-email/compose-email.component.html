@@ -1,0 +1,100 @@
+<app-navigation></app-navigation>
+<div class="container">
+  <div class="content-wrapper">
+    <section class="content">
+      <div class="row">
+
+        <div class="col-md-3 pr-1">
+          <app-email-menu></app-email-menu>
+        </div>
+
+        <div class="col-md-9 pl-1">
+          <app-user-card [userId]="userToQuery" (username)="setUsername($event)" (isMatch)="validateMatch($event)">
+          </app-user-card>
+
+          <div *ngIf="displayAlert">
+            <div *ngIf="!isMatched" class="card border-danger mb-3 mt-1">
+              <div class="card-body text-danger">
+                <img src="https://img.icons8.com/fluent/48/000000/error.png" />
+                <label>
+                  Whoops! It seems you have not connected this profile, please visit <strong>{{toUsername}}</strong>
+                  profile
+                  to send your request/match.
+                  You are only allowed to send messages if both are interested in each other.
+                  <a [routerLink]="['/user/b/search']">Search users</a><br>
+                </label>
+                <small class="text-100">
+                  Remember you can comment on his/her posts or articles to let him/her know about you and your interest.
+                  Please click here to read more.
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="isMatched" class="card card-primary card-outline mt-1">
+            <form [formGroup]="emailForm" (ngSubmit)="send()">
+              <div class="card-body">
+                <div>
+                  <div class="form-group">
+                    <input class="form-control form-control-sm" placeholder="To:" value="{{toUsername}}"
+                      readonly="true">
+                    <input class="form-control form-control-sm mt-1" placeholder="Subject:" formControlName="subject"
+                      name="subject" required>
+                    <span class="text-danger"
+                      *ngIf="emailForm.controls['subject'].touched && emailForm.controls['subject'].hasError('required')">
+                      <small>Please add a subject</small>
+                    </span>
+                  </div>
+                  <div class="form-group">
+                    <ckeditor [editor]="postEditor" class="myPost mb-2" formControlName="emailBody" name="emailBody"
+                      required>
+                    </ckeditor>
+                    <span class="text-danger"
+                      *ngIf="emailForm.controls['emailBody'].touched && emailForm.controls['emailBody'].hasError('required')">
+                      <small>Please add a subject</small>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="float-right">
+                  <!-- <button [disabled]="!emailForm.valid" type="button" class="btn btn-outline-secondary btn-sm">
+                    <span class="mr-3 ml-3">
+                      <i class="fas fa-pencil-alt"></i> Draft
+                    </span>
+                  </button> -->
+                  <button [disabled]="!emailForm.valid" type="submit" class="btn btn-thyroo btn-sm ml-1">
+                    <span class="mr-3 ml-3">
+                      <i class="far fa-envelope"></i> Send
+                    </span>
+                  </button>
+                </div>
+                <a [routerLink]="['/email/inbox']" class="text-sm text-muted"><i class="fas fa-times"></i> Cancel
+                  email</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+
+<div *ngIf="emailSendFlag" class="alert alert-dark alert-dismissible fade show notification" role="alert">
+  <strong>
+    <i class="fas fa-check-circle"></i>
+    Your email was sent!
+  </strong> go to your <a [routerLink]="['/email/outbox']" routerLinkActive="router-link-active">outbox</a>
+  to check your emails.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div *ngIf="emailSending" class="alert alert-dark alert-dismissible fade show notification" role="alert">
+  <strong>Sending your email...</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>

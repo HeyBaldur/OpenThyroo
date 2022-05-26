@@ -1,0 +1,182 @@
+<app-navigation></app-navigation>
+
+<div class="container">
+  <div class="row mt-1">
+    <div class="col-md-8 pr-1">
+      <app-profile-validator></app-profile-validator>
+      <app-feed-skeleton *ngIf="skeleton"></app-feed-skeleton>
+
+      <div class="card mb-2">
+        <div class="card is-post post-list" *ngIf="post">
+          <div class="content-wrap">
+            <div class="card-heading">
+              <div class="dropdown is-spaced float-right">
+                <div>
+                  <div class="button">
+                    <span *ngIf="post.userId === currentUser.id" tooltip="Delete post">
+                      <a class="pointer" (click)="removePostConfim(post.id)">
+                        <strong>
+                          <i class="far fa-trash-alt"></i>
+                        </strong>
+                      </a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="user-block">
+                <div class="image">
+                  <a [routerLink]="['/user/', post.user.id]">
+                    <img src="{{post.user.photoUrl}}" data-user-popover="1" class="border"
+                      alt="{{post.user.firstName}}">
+                  </a>
+                </div>
+                <div class="user-info">
+                  <a [routerLink]="['/user/', post.user.id]">
+                    {{post.user.providerFullName}} <app-verified-badge-sm *ngIf="post.user.verifiedAccount">
+                    </app-verified-badge-sm><br>
+                    <strong *ngIf="post.user.verifiedAccount">Trusted and verified user</strong>
+                  </a>
+                  <span class="time">
+                    Shared publicly - {{post.created | timeAgo}}
+                  </span>
+                </div>
+              </div>
+
+              <app-deletepostconfirmation [deleteConfirmation]="deleteConfirmation" [userId]="post.userId"
+                [currentUserId]="currentUser.id" [postItemId]="post.id" [itemId]="post.id"
+                (visibleChange)="cancelDeleting($event)" (postToRemove)="removePost($event)">
+              </app-deletepostconfirmation>
+            </div>
+            <div class="card-body">
+              <div class="post-text">
+                <h5>
+                  <strong>{{post.title}}</strong>
+                </h5>
+                <div [innerHTML]="post.description"></div>
+                <!-- <div [innerHTML]="embedService.embed(post.description)"></div>
+
+                <div *ngIf="post.url" class="mb-2">
+                  <div [innerHTML]="embedService.embed(post.url.toString())"></div>
+                  <a class="text-muted" href="{{post.url}}" target="_blank">
+                    <small>Open in external tab</small>
+                  </a>
+                </div> -->
+                <a [routerLink]="['/feed/topic/', post.category.id]" class="text-muted pointer mb-2">
+                  <div class="chip mb-1">
+                    <img src="{{post.category.photoUrl}}" alt="{{post.category.name}}" width="96" height="96"
+                      class="border">
+                    {{post.category.name}}
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="card-footer">
+              <app-social-options [itemId]="post.id" [liked]="post.likeDet" [likeCounter]="post.likes"
+                [commentsCounter]="post.comments?.length" (postId)="like($event)" (postId)="unLike($event)">
+              </app-social-options>
+            </div>
+          </div>
+
+          <div class="comments-wrap is-hidden">
+            <div class="comments-heading">
+              <h4>
+                Comments
+                <small>({{post.comments?.length}})</small>
+              </h4>
+            </div>
+            <div class="comments-body" *ngIf="post.comments?.length !== 0">
+              <div class="card-footer card-comments">
+                <app-commentsfeed [commentsArray]="post.comments" [currentUserId]="currentUser.id"
+                  [deleteConfirmation]="delCommentFlag" (postToRemove)="removeComment($event, post.id)">
+                </app-commentsfeed>
+              </div>
+            </div>
+            <div class="card-footer">
+              <form *ngIf="currentUser.photoUrl" [formGroup]="commentForm">
+                <img class="img-fluid img-circle img-sm border img-comments" src="{{currentUser.photoUrl}}"
+                  alt="{{currentUser.firstName}}">
+                <div class="img-push">
+                    <quill-editor formControlName="description" [required]="true">
+                      <div quill-editor-toolbar>
+                        <span class="ql-formats">
+                          <button class="ql-bold" [title]="'Bold'"></button>
+                        </span>
+                        <span class="ql-formats">
+                          <select class="ql-align" [title]="'Aligment'">
+                            <option selected></option>
+                            <option value="center"></option>
+                            <option value="right"></option>
+                            <option value="justify"></option>
+                          </select>
+                          <select class="ql-align" [title]="'Aligment2'">
+                            <option selected></option>
+                            <option value="center"></option>
+                            <option value="right"></option>
+                            <option value="justify"></option>
+                          </select>
+                        </span>
+                        <span class="ql-formats">
+                          <button type="button" class="ql-code-block">
+                            <svg viewBox="0 0 18 18">
+                              <polyline class="ql-even ql-stroke" points="5 7 3 9 5 11"></polyline>
+                              <polyline class="ql-even ql-stroke" points="13 7 15 9 13 11"></polyline>
+                              <line class="ql-stroke" x1="10" x2="8" y1="5" y2="13"></line>
+                            </svg>
+                          </button>
+                        </span>
+                      </div>
+                    </quill-editor>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <button class="btn btn-outline-thyroo btn-sm mt-2 mb-2 float-right text-500" type="submit" (click)="addComment(post.id, post.userId)">
+                          <span class="mr-3 ml-3 text-sm">
+                            Submit answer
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <app-advertising></app-advertising>
+
+      <div *ngIf="post === null">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <img src="https://img.icons8.com/clouds/100/000000/broken-link.png" />
+                <h5 class="card-title text-100">Whoops! The resource was not found</h5>
+                <p class="card-text text-sm text-100">
+                  It seems the resource has been removed, sometimes uses removes articles or posts because they decide
+                  not to be visible
+                  anymore or our team has removed the content temporally. If you think this is an error, please contact
+                  us and
+                  let us know about the problem.
+                </p>
+                <a [routerLink]="['/feed']" routerLinkActive="router-link-active" class="btn btn-thyroo btn-sm">
+                  <small>
+                    <span class="mr-3 ml-3">
+                      <strong>Return to home</strong>
+                    </span>
+                  </small>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-4 pl-1">
+      <app-users-block></app-users-block>
+    </div>
+  </div>
+</div>
+
+
+<app-full-screen-loader *ngIf="loader"></app-full-screen-loader>

@@ -1,0 +1,121 @@
+.card .nav.flex-column>li {
+  border-bottom: 1px solid rgba(0, 0, 0, .125) !important;
+  margin: 0 !important;
+}
+
+.mailbox-read-info {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  padding: 10px;
+}
+
+.mailbox-read-info h3 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.mailbox-read-info h5 {
+  margin: 0;
+  padding: 5px 0 0;
+}
+
+.mailbox-read-time {
+  color: #999;
+  font-size: 13px;
+}
+
+.mailbox-controls {
+  padding: 5px;
+}
+
+.mailbox-controls.with-border {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+
+.mailbox-read-message {
+  padding: 10px;
+}
+
+/*User*/
+.flag-icon {
+  width: 2em;
+}
+
+p {
+  font-size: .9rem;
+}
+
+.profile-image {
+  border-radius: 50%;
+  width: 5em;
+}
+
+.card-widget {
+  border: 0;
+  position: relative;
+  background-color: #fafafa;
+}
+
+.widget-user-2 .widget-user-header {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  padding: 1rem;
+}
+
+.widget-user-2 .widget-user-username {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.widget-user-2 .widget-user-desc {
+  margin-top: 0;
+}
+
+.widget-user-2 .widget-user-username,
+.widget-user-2 .widget-user-desc {
+  margin-left: 75px;
+}
+
+.widget-user-2 .widget-user-image>img {
+  float: left;
+  height: 65px;
+  width: 65px;
+}
+
+:host ::ng-deep figure img {
+  width: 100% !important;
+}
+
+:host ::ng-deep .ck-editor__editable_inline {
+  height: 300px !important;
+  font-family: 'Noto Sans TC', sans-serif !important;
+  font-size: 14px;
+  color: #6c757d !important;
+}
+
+:host ::ng-deep .ck-editor__editable_inline a {
+  color: #9c081b !important;
+}
+
+:host ::ng-deep .ck-editor__editable_inline a:hover {
+  color: #780615 !important;
+}
+
+.error-label {
+  border: 1.5px solid red;
+  padding: 4px;
+  color: #c76565;
+}
+
+a {
+  color: #9c081b !important;
+}
+
+a:hover {
+  color: #780615 !important;
+}
+
+.no-emails-to-display{
+  padding: 18px;
+  font-weight: 100;
+}

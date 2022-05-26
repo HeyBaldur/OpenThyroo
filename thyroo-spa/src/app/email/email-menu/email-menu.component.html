@@ -1,0 +1,50 @@
+<div class="card pl-1">
+  <app-aside-skeleton-loader *ngIf="skeleton"></app-aside-skeleton-loader>
+  <div class="card-body p-0 text-sm">
+    <ul class="nav nav-pills flex-column list-group">
+      <li class="nav-item active">
+        <a [routerLink]="['/email/inbox']" routerLinkActive="router-link-active" class="nav-link">
+          <i class="fas fa-inbox"></i> Inbox
+        </a>
+      </li>
+      <li class="nav-item active">
+        <a [routerLink]="['/email/outbox']" routerLinkActive="router-link-active" class="nav-link">
+          <i class="fas fa-inbox"></i> Outbox
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="my-1 p-3 bg-white rounded border shadow-sm">
+  <h6 class="border-bottom border-gray pb-2 mb-0">My matches</h6>
+  <input type="search" class="form-control form-control-sm mt-1 mb-1" placeholder="e.g. Dwayne Johnson" [(ngModel)]="filterer">
+  <div *ngIf="myMatchesList?.length == 0">
+    <p class="text-100 mt-2">
+      You have not matches yet
+    </p>
+  </div>
+  <div class="overflow-auto my-matches-list">
+    <div class="media text-muted pt-1" *ngFor="let match of myMatchesList | myFilter: filterer">
+      <img src="{{match.businessProfile.photoUrl}}">
+      <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <strong class="text-gray-dark">
+            {{match.businessProfile.knowAs}}
+            <a target="_blank" title="Open business profile in new tab"
+              [routerLink]="['/user/', match.businessProfile.userId]">
+              <small><i class="fas fa-external-link-alt"></i></small>
+            </a><br>
+            <small>{{match.businessProfile.occupation}}</small>
+          </strong>
+        </div>
+        <span class="d-block">
+          <a target="_blank" title="Send a message" [routerLink]="['/email/thread/new/', match.businessProfile.userId]">
+            <b>Send a message</b>
+          </a>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+<app-help-links></app-help-links>

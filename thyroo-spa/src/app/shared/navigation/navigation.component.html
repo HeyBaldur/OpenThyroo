@@ -1,0 +1,107 @@
+<nav class="navbar navbar-expand-lg bg-white mb-3 shadow-sm fixed-top">
+  <div class="container">
+    <a class="navbar-brand thyroo-logo" [routerLink]="['/feed']">
+      <img class="brand-logo" src="../../../assets/images/thyroo-square.svg">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span
+        class="navbar-toggler-icon"></span> </button>
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto navbar-right-top" *ngIf="isLoggedIn">
+        <!-- <li class="nav-item">
+          <div id="custom-search" class="top-search-bar"> <input class="form-control" type="text"
+              placeholder="Search.."> </div>
+        </li> -->
+        <li class="nav-item connection">
+          <a popover="You have {{newEmailsCounter}} new messages" triggers="mouseenter:mouseleave" class="nav-link"
+            [routerLink]="['/email/inbox']" id="navbarDropdown" role="button" aria-haspopup="true"
+            aria-expanded="false">
+            <img style="width: 20px;" src="../../../assets/images/icons/messages.png" />
+            <span *ngIf="newEmailsCounter !== 0" class="badge badge-danger notification-badge">{{newEmailsCounter}}</span>
+          </a>
+        </li>
+        <li class="nav-item connection">
+          <a popover="Search users and find new connections" triggers="mouseenter:mouseleave" class="nav-link"
+            [routerLink]="['/user/b/search']" id="navbarDropdown" role="button" aria-haspopup="true"
+            aria-expanded="false">
+            <img style="width: 20px;" src="../../../assets/images/icons/search-candidate.png" />
+          </a>
+        </li>
+        <li class="nav-item connection">
+          <a popover="You have {{newNotificationsCounter}} new notifications" triggers="mouseenter:mouseleave"
+            class="nav-link" [routerLink]="['/notifications']" id="navbarDropdown" role="button" aria-haspopup="true"
+            aria-expanded="false">
+            <img style="width: 20px;" src="../../../assets/images/icons/notifications.png" />
+            <span *ngIf="newNotificationsCounter !== 0" class="badge badge-danger notification-badge">{{newNotificationsCounter}}</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown connection"> <a class="nav-link" href="#" id="navbarDropdown" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img style="width: 20px;" src="../../../assets/images/icons/menu.png" />
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right connection-dropdown shadow">
+            <li class="connection-list">
+              <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 "> <a [routerLink]="['/email/inbox']"
+                    class="connection-item"><img src="../../../assets/images/icons/messages.png" />
+                    <span>Email</span></a> </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 "> <a [routerLink]="['/psettings']" href="#"
+                    class="connection-item"><img src="../../../assets/images/icons/settings.png" />
+                    <span>Settings</span></a> </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 "> <a [routerLink]="['/business/campaignmanager']"
+                    class="connection-item">
+                    <img src="../../../assets/images/icons/ads.png" />
+                    <span>Ads</span></a> </div>
+              </div>
+            </li>
+            <li>
+              <div class="conntection-footer"><a [routerLink]="['/help/faq']">Help center</a></div>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown nav-user">
+          <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <img src="{{currentUser.photoUrl}}" alt="" class="user-avatar-md rounded-circle">
+          </a>
+          <div class="dropdown-menu dropdown-menu-right nav-user-dropdown shadow"
+            aria-labelledby="navbarDropdownMenuLink2">
+            <a [routerLink]="['/profile']" class="user-menu-main">
+              <div class="nav-user-info">
+                <h5 class="mb-0 text-white nav-user-name">
+                  {{currentUser.providerFullName}}
+                </h5>
+                <span class="status"></span><span>
+                  <strong>{{currentUser.emailAddress}}</strong>
+                </span>
+              </div>
+            </a>
+            <a class="dropdown-item mt-2" [routerLink]="['/profile']"><i class="fas fa-user mr-2"></i>Account</a>
+            <a class="dropdown-item" [routerLink]="['/psettings']"><i class="fas fa-cog mr-2"></i>Setting</a>
+            <a class="dropdown-item" [routerLink]="['/profile/articles']"><i class="far fa-newspaper mr-2"></i>My
+              articles</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item pointer" (click)="signOut()"><i class="fas fa-power-off mr-2"></i>Logout</a>
+          </div>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto navbar-right-top" *ngIf="!isLoggedIn">
+        <li class="nav-item connection">
+          <a title="Messages inbox" class="nav-link" [routerLink]="['/auth/login']" id="navbarDropdown" role="button"
+            aria-haspopup="true" aria-expanded="false">
+            <img style="width: 20px;" src="../../../assets/images/icons/log-in.png" />
+            Log in
+          </a>
+        </li>
+        <li class="nav-item connection">
+          <a title="Messages inbox" class="nav-link" [routerLink]="['/auth/signup']" id="navbarDropdown" role="button"
+            aria-haspopup="true" aria-expanded="false">
+            <img style="width: 20px;" src="../../../assets/images/icons/sign-up.png" />
+            Sign up
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

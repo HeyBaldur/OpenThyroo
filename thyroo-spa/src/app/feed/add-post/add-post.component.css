@@ -1,0 +1,80 @@
+.userAvatar {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.new-post {
+    text-decoration: none;
+}
+
+:host ::ng-deep .ck-editor__editable_inline {
+    height: 100px !important;
+    font-family: 'Noto Sans TC', sans-serif !important;
+    font-size: 14px;
+    color: #6c757d!important;
+  }
+
+  
+:host ::ng-deep ckeditor span {
+    font-family: 'Noto Sans TC', sans-serif !important;
+    font-weight: 500 !important;
+}
+
+:host ::ng-deep {
+    /* Make the mention background blue. */
+    --ck-color-mention-background: hsla(220, 100%, 54%, 0.4);
+
+    /* Make the mention text dark grey. */
+    --ck-color-mention-text: hsl(0, 0%, 15%);
+}
+
+.form-control {
+    border-radius: 0em !important;
+}
+
+.modal-content {
+    border-radius: 20px !important;
+}
+
+:host ::ng-deep .ql-container .ql-editor {
+    max-height: 200px !important;
+    height: 200px !important;
+}
+
+:host ::ng-deep .ql-tooltip {
+    left: 199px !important;
+    top: -4px !important;
+    border-radius: 25px !important;
+    font-weight: 500 !important;
+
+}
+
+.modal-title {
+    font-size: 15px;
+    color: #9c081b !important;
+}
+
+.chip {
+    display: inline-block;
+    padding: 0 25px;
+    height: 25px;
+    font-size: 12px;
+    line-height: 25px;
+    border-radius: 25px;
+    background-color: #f7dce0;
+    width: 100%;
+    font-weight: 500 !important;
+  }
+  
+  .chip img {
+    float: left;
+    margin: 0 10px 0 -25px;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+  }
+
+  .form-check-label {
+      width: 100% !important;
+  }

@@ -1,0 +1,142 @@
+<app-navigation></app-navigation>
+<div class="container">
+  <div class="row mt-1">
+    <div class="col-md-3">
+      <div class="h5"><strong>@Notifications</strong></div>
+      <p class="p-sm-12 text-muted">
+        You have new notifications
+      </p>
+      <hr>
+    </div>
+    <div class="col-md-6 pr-1">
+
+      <div *ngIf="notificationList">
+        <h6 class="text-muted">
+          My notifications<br>
+          <small>Who commented, or added me to his/her network will be displayed here.</small>
+          <hr>
+        </h6>
+        
+        <div class="row">
+          <div class="col-md-12">
+            <a (click)="readAll()" class="float-right pointer mark-read">
+              <small>Mark all as read</small>
+            </a>
+          </div>
+        </div>
+
+        <div *ngFor="let notification of notificationList">
+          <div class="card bg-light">
+            <div class="media text-muted">
+              <div class="media-body pb-3 mb-0 small">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                  <div class="card is-post post-list">
+                    <div class="content-wrap">
+                      <div class="card-heading bg-light">
+                        <div class="user-block">
+                          <div class="image">
+                            <span>
+                              <a [routerLink]="['/user/', notification.user.id]" target="_blank">
+                                <img src="{{notification.user.photoUrl}}" data-user-popover="1" class="border">
+                              </a>
+                            </span>
+                          </div>
+                          <div class="user-info"
+                            popover="Check activity or view business profile, {{notification.user.providerFullName}}"
+                            triggers="mouseenter:mouseleave">
+                            <span>
+                              {{notification.user.providerFullName}}
+                              <app-verified-badge-sm *ngIf="notification.user.verifiedAccount">
+                              </app-verified-badge-sm><br>
+                              <strong *ngIf="notification.user.verifiedAccount">
+                                Trusted and verified user
+                              </strong>
+                            </span>
+                            <span class="time">
+                              <span class="d-block">{{notification.description}}
+                                <small>{{notification.notificationDate | timeAgo}}</small></span>
+                              <a class="text-thyroo pointer mark-read text-sm" (click)="navigate(notification.url, notification.id)">
+                                View activity
+                              </a>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="notificationList?.length === 0">
+        <img class="mx-auto d-block" src="../../../assets/images/icons/thumb-up.png" />
+        <h4 class="text-100 text-center">You are up to date<br><small>You do not have new notifications</small></h4>
+      </div>
+
+      <div *ngIf="peopleWhoViewedMyProfile" class="mt-5 mb-3">
+        <h6 class="text-muted">
+          Who viewed my profile<br>
+          <small>These are the latest 10 people who viewed your profile.</small>
+          <hr>
+        </h6>
+        <div *ngFor="let people of peopleWhoViewedMyProfile">
+          <div class="card">
+            <div class="media text-muted">
+              <div class="media-body pb-3 mb-0 small">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                  <div class="card is-post post-list">
+                    <div class="content-wrap">
+                      <div class="card-heading">
+                        <div class="user-block">
+                          <div class="image">
+                            <span>
+                              <a [routerLink]="['/user/', people.businessProfile.userId]" target="_blank">
+                                <img src="{{people.businessProfile.photoUrl}}" data-user-popover="1" class="border">
+                              </a>
+                            </span>
+                          </div>
+                          <div class="user-info">
+                            <span>
+                              {{people.businessProfile.knowAs}}
+                              <app-verified-badge-sm *ngIf="people.businessProfile.profileVerified">
+                              </app-verified-badge-sm><br>
+                              <strong *ngIf="people.businessProfile.profileVerified">
+                                Trusted and verified user
+                              </strong>
+                            </span>
+                            <span class="time">
+                              <span class="d-block">{{people.businessProfile.knowAs}} has viewed your profile
+                                <span>{{people.dateView | timeAgo}}</span></span>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-3 pl-1">
+      <div class="card">
+        <div class="card-body">
+          <p class="text-500 text-sm">
+            The Notifications tab is your hub for notifications about you, your content, and your connections. You'll
+            receive notifications for updates about people in your network, the activity of your shares or posts, as
+            well as career opportunities.
+          </p>
+        </div>
+      </div>
+      <app-help-links></app-help-links>
+    </div>
+  </div>
+</div>
+
+<app-full-screen-loader *ngIf="loader"></app-full-screen-loader>

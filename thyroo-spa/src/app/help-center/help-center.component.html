@@ -1,0 +1,743 @@
+<app-navigation></app-navigation>
+<header class="bg-dark py-2 mb-2">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-lg-12">
+        <h1 class="display-4 text-white mt-5 mb-5">Help center</h1>
+        <!-- <p class="lead mb-5 text-white-50">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non possimus ab labore provident mollitia. Id assumenda voluptate earum corporis facere quibusdam quisquam iste ipsa cumque unde nisi, totam quas ipsam.</p> -->
+      </div>
+    </div>
+  </div>
+</header>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-4 pr-1">
+      <div class="nav nav-pills faq-nav" id="faq-tabs" role="tablist" aria-orientation="vertical">
+        <a href="#tab1" class="nav-link active" data-toggle="pill" role="tab" aria-controls="tab1" aria-selected="true">
+          <i class="mdi mdi-help-circle"></i> Frequently Asked Questions
+        </a>
+        <a href="#tab2" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab2" aria-selected="false">
+          <i class="mdi mdi-account"></i> Steps in Thyroo
+        </a>
+        <a href="#tab3" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab3" aria-selected="false">
+          <i class="mdi mdi-account-settings"></i> How to get more customers
+        </a>
+        <!-- <a href="#tab5" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab4" aria-selected="false">
+          <i class="mdi mdi-heart"></i> Create a start-up
+        </a> -->
+        <!-- <a href="#tab4" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab4" aria-selected="false">
+          <i class="mdi mdi-heart"></i> Favorites
+        </a>
+        <a href="#tab5" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab5" aria-selected="false">
+          <i class="mdi mdi-coin"></i> Transactions
+        </a>
+        <a href="#tab6" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab6" aria-selected="false">
+          <i class="mdi mdi-help"></i> General help
+        </a> -->
+      </div>
+      <app-help-links></app-help-links>
+    </div>
+    <div class="col-md-8 pl-1">
+      <div class="tab-content" id="faq-tab-content">
+        <div class="tab-pane show active" id="tab1" role="tabpanel" aria-labelledby="tab1">
+          <div class="accordion" id="accordion-tab-1">
+            <div class="card">
+              <div class="card-header" id="accordion-tab-1-heading-1">
+                <h5>
+                  <button class="btn btn-link" type="button" data-toggle="collapse"
+                    data-target="#accordion-tab-1-content-1" aria-expanded="false"
+                    aria-controls="accordion-tab-1-content-1">What’s Thyroo and who we are?</button>
+                </h5>
+              </div>
+              <div class="collapse show" id="accordion-tab-1-content-1" aria-labelledby="accordion-tab-1-heading-1"
+                data-parent="#accordion-tab-1">
+                <div class="card-body">
+                  <p>
+                    Thyroo is a web application that connects business people, software developers, architects or any
+                    other professional by a strong algorithm avoiding wrong connections, chatting or messaging with
+                    people who do not have anything in common with. Thyroo saves you time when you need to search people
+                    to make your business grow faster or develop your project or simply share an idea and build a team
+                    to make it come true. In the future Thyroo will introduce a portal job but as a second face of the
+                    project.
+                  </p>
+                  <p class="mt-2">
+                    Thyroo has been developed by Rodolfo A. Calvo and Michael A. Campos with the mission to help others
+                    grow their business effortlessly. We do not receive any income from it so far, however, we are
+                    planning to create a section where users can have premium accounts in the feature for a minimum fee.
+                  </p>
+                  <p class="mt-2">
+                    We also are currently working hard in mobile development to offer to all communities to access Thyroo 
+                    from their mobile device effortlessly. 
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="accordion-tab-1-heading-2">
+                <h5>
+                  <button class="btn btn-link" type="button" data-toggle="collapse"
+                    data-target="#accordion-tab-1-content-2" aria-expanded="false"
+                    aria-controls="accordion-tab-1-content-2">How can I connect with other users?</button>
+                </h5>
+              </div>
+              <div class="collapse" id="accordion-tab-1-content-2" aria-labelledby="accordion-tab-1-heading-2"
+                data-parent="#accordion-tab-1">
+                <div class="card-body">
+                  <p>It is really simple actually, after completing your profile with your professional information and
+                    business interests you will appear in the business user list, here starts the interesting, once you
+                    check the list of users and you find a user which really fits your expectations you can match that
+                    user’s profile, such user will not be notified about your interest on the his/her profile, if that
+                    user is interested on your profile and you fit his/her expectations he/she can hit the match button
+                    to your profile, if each other hit the match button it means there’s a real match, if this happens
+                    the chat window can be open at any time and both can start the communication. </p>
+                    <img src="../../assets/images/help-center/search-users.png" class="shadow-sm">
+                  <p>Thyroo.com thinks in people’s time, so we have developed a smart way for you to communicate with
+                    matches once you are allowed to it. We have created a email box where you will be able to
+                    communicate with your matches, remember that you can send messages to the users that you have
+                    matched each other. You are not allowed to send a message to any user. </p>
+                    <img src="../../assets/images/help-center/user-list.PNG" class="shadow-sm">
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="accordion-tab-1-heading-3">
+                <h5>
+                  <button class="btn btn-link" type="button" data-toggle="collapse"
+                    data-target="#accordion-tab-1-content-3" aria-expanded="false"
+                    aria-controls="accordion-tab-1-content-3">How can I let other users know about me?</button>
+                </h5>
+              </div>
+              <div class="collapse" id="accordion-tab-1-content-3" aria-labelledby="accordion-tab-1-heading-3"
+                data-parent="#accordion-tab-1">
+                <div class="card-body">
+                  <p>
+                    There are two different ways that you can be visible for users, the first way is by creating
+                    interesting posts in the feed section and let others know about your interests, news or thoughts
+                    really interesting that captures attention of users. Remember that this application is oriented to
+                    the business environment, unfortunately we cannot allow posts that are not a related to it, and the
+                    second way to let others know about you is creating articles with the same structure of the posts.
+                    Maybe you are wondering, what’s the difference between posts and articles?, well, posts are small
+                    and quick, articles are big, extensive and full of valuable information for entrepreneurs and
+                    business people, but no worries, not only business people, everyone who is interested on the topic
+                    can be a target. We strongly recommend you to create at least 1 or 2 articles per month to keep you
+                    active in the platform.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="accordion-tab-1-heading-4">
+                <h5>
+                  <button class="btn btn-link" type="button" data-toggle="collapse"
+                    data-target="#accordion-tab-1-content-4" aria-expanded="false"
+                    aria-controls="accordion-tab-1-content-4">Is Thyroo.com secure?</button>
+                </h5>
+              </div>
+              <div class="collapse" id="accordion-tab-1-content-4" aria-labelledby="accordion-tab-1-heading-4"
+                data-parent="#accordion-tab-1">
+                <div class="card-body">
+                  <p>
+                    Yes it is. Thyroo is a platform totally secure that keeps your information save. In the dropdown
+                    button at the top of the website you can hit on settings section, you can set your preferences about
+                    the privacy, notifications and access for your account.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="tab2" role="tabpanel" aria-labelledby="tab2">
+          <div class="accordion" id="accordion-tab-2">
+            <div class="card">
+              <div class="card-header" id="accordion-tab-2-heading-1">
+                <h5>
+                  <button class="btn btn-link" type="button" data-toggle="collapse"
+                    data-target="#accordion-tab-2-content-1" aria-expanded="false"
+                    aria-controls="accordion-tab-2-content-1">First steps in Thyroo</button>
+                </h5>
+              </div>
+              <div class="collapse show" id="accordion-tab-2-content-1" aria-labelledby="accordion-tab-2-heading-1"
+                data-parent="#accordion-tab-2">
+                <div class="card-body">
+                  <p>
+                    You can create a free account in Thyroo.com, once you have entered your credentials, email address,
+                    username, first name, last name and a strong password, the next step is creating a business profile,
+                    and this will help you to let other users know about you, your interests, goals and who are you
+                    professionally, also what are your expectations and outcomes by using Thyroo, once you have
+                    completed your business profile we strongly recommend you to add your business interests by hitting
+                    the second tab of your business profile section.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="accordion-tab-2-heading-2">
+                <h5>
+                  <button class="btn btn-link" type="button" data-toggle="collapse"
+                    data-target="#accordion-tab-2-content-2" aria-expanded="false"
+                    aria-controls="accordion-tab-2-content-2">Why Thyroo.com is great for business? </button>
+                </h5>
+              </div>
+              <div class="collapse" id="accordion-tab-2-content-2" aria-labelledby="accordion-tab-2-heading-2"
+                data-parent="#accordion-tab-2">
+                <div class="card-body">
+                  <p>Other business websites or applications offer you the way to connect with a lot of people, but is
+                    right there where the problem just starts, how annoying is for to have 200 “friend request” from
+                    people you don’t actually know or do not match your interests or expectations, that’s the problem
+                    Thyroo solved, you can search for real and active people with the right profile you are currently
+                    looking for, if both profiles show interest in each other, well, guess what? It’s a match, let’s
+                    start the conversation ASAP. </p>
+                  <p>There are thousands of active users currently using Thyroo.com from people that only have a simple
+                    idea to the most biggest investor of the country, so it depends on what you are looking for and what
+                    others looking for to start developing a project, creating a company or finding the best investor.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="accordion-tab-2-heading-3">
+                <h5>
+                  <button class="btn btn-link" type="button" data-toggle="collapse"
+                    data-target="#accordion-tab-2-content-3" aria-expanded="false"
+                    aria-controls="accordion-tab-2-content-3">How can I verify my account?</button>
+                </h5>
+              </div>
+              <div class="collapse" id="accordion-tab-2-content-3" aria-labelledby="accordion-tab-2-heading-3"
+                data-parent="#accordion-tab-2">
+                <div class="card-body">
+                  <p>
+                    We take care of the health of our members, we wish all of users were verified accounts,
+                    unfortunately we cannot verify all the accounts at once, so if you are continuous with posts,
+                    articles and show constant activity in your profile it is very probably your verified icon displays
+                    next to your name in the next weeks. The blue verified badge on Thyroo lets people know that an
+                    account of public interest is authentic.
+                  </p>
+                  <p>The badge appears next to the name on an account’s profile and next to the account name in search
+                    results. It is always the same color and placed in the same location, regardless of profile or theme
+                    color customizations. Accounts that don’t have the badge next to their name but that display it
+                    somewhere else, for example in the profile photo, header photo, or bio, are not verified accounts.
+                    Verified badges must be applied by Thyroo team, and accounts that use a badge as a part of profile
+                    photos, background photos, or in any other way that implies verified status, are subject to
+                    permanent account suspension. </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="tab3" role="tabpanel" aria-labelledby="tab3">
+          <div class="accordion" id="accordion-tab-3">
+            <div class="card">
+              <div class="card-header" id="accordion-tab-2-heading-4">
+                <h5>
+                  <button class="btn btn-link" type="button" data-toggle="collapse"
+                    data-target="#accordion-tab-3-content-0" aria-expanded="false"
+                    aria-controls="accordion-tab-3-content-0">Why should I write articles?</button>
+                </h5>
+              </div>
+              <div class="collapse show" id="accordion-tab-3-content-0" aria-labelledby="accordion-tab-2-heading-4"
+                data-parent="#accordion-tab-3">
+                <div class="card-body">
+                  <p>Writing Thyroo articles will improve your business. Thyroo is an amazing platform for entrepreneurs
+                    and professionals. It is a social media site that allows for networking, job seeking, and sharing
+                    specialized information. One of the main features of Thyroo is the ability to write articles to
+                    share on your page. You have the freedom to write whatever you want, whenever you want. By creating
+                    a piece of writing that is unique to you and your profession/business, you are branding yourself.
+                    Your words become attached to your job and then promote your business.</p>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="accordion-tab-3-heading-1">
+                <h5>
+                  <button class="btn btn-link" type="button" data-toggle="collapse"
+                    data-target="#accordion-tab-3-content-1" aria-expanded="false"
+                    aria-controls="accordion-tab-3-content-1">How to write a good article?</button>
+                </h5>
+              </div>
+              <div class="collapse" id="accordion-tab-3-content-1" aria-labelledby="accordion-tab-3-heading-1"
+                data-parent="#accordion-tab-3">
+                <div class="card-body">
+                  <p>When you write articles on Thyroo, you want to demonstrate your thought leadership, expertise, and
+                    industry knowledge. News and updates from your industry make good topics to write about.
+                    You could also answer a question your audience has. What are the frequently asked questions you get
+                    when you meet someone from your network? If you’re a member of a Facebook group that contains your
+                    ideal clients, keep an eye out for questions that get asked over and over again. I keep a list on
+                    the notes app on my computer with ideas for blog posts and articles.
+                    If one of your LinkedIn posts is getting a lot of engagement (comments and conversation) from your
+                    network that might be a good topic for a long-form article.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="tab4" role="tabpanel" aria-labelledby="tab4">
+          <div class="accordion" id="accordion-tab-4">
+            <div class="card">
+              <div class="card-header" id="accordion-tab-4-heading-1">
+                <h5>
+                  <button class="btn btn-link" type="button" data-toggle="collapse"
+                    data-target="#accordion-tab-4-content-1" aria-expanded="false"
+                    aria-controls="accordion-tab-4-content-1">You, minion. Lift my arm?</button>
+                </h5>
+              </div>
+              <div class="collapse show" id="accordion-tab-4-content-1" aria-labelledby="accordion-tab-4-heading-1"
+                data-parent="#accordion-tab-4">
+                <div class="card-body">
+                  <p>AFTER HIM! A true inspiration for the children. What are you hacking off? Is it my torso?! 'It is!'
+                    My precious torso! I saw you with those two "ladies of the evening" at Elzars. Explain that. She
+                    also liked to shut up! Why not indeed!</p>
+                  <p><strong>Example: </strong>I feel like I was mauled by Jesus. Hello, little man. I will destroy you!
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="accordion-tab-4-heading-2">
+                <h5>
+                  <button class="btn btn-link" type="button" data-toggle="collapse"
+                    data-target="#accordion-tab-4-content-2" aria-expanded="false"
+                    aria-controls="accordion-tab-4-content-2">No, I'm Santa Claus?</button>
+                </h5>
+              </div>
+              <div class="collapse" id="accordion-tab-4-content-2" aria-labelledby="accordion-tab-4-heading-2"
+                data-parent="#accordion-tab-4">
+                <div class="card-body">
+                  <p>I meant 'physically'. Look, perhaps you could let me work for a little food? I could clean the
+                    floors or paint a fence, or service you sexually? When the lights go out, it's nobody's business
+                    what goes on between two consenting adults.</p>
+                  <p><strong>Example: </strong>Nay, I respect and admire Harold Zoid too much to beat him to death with
+                    his own Oscar.</p>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="accordion-tab-4-heading-3">
+                <h5>
+                  <button class="btn btn-link" type="button" data-toggle="collapse"
+                    data-target="#accordion-tab-4-content-3" aria-expanded="false"
+                    aria-controls="accordion-tab-4-content-3">Belligerent and numerous?</button>
+                </h5>
+              </div>
+              <div class="collapse" id="accordion-tab-4-content-3" aria-labelledby="accordion-tab-4-heading-3"
+                data-parent="#accordion-tab-4">
+                <div class="card-body">
+                  <p>Hey, what kinda party is this? There's no booze and only one hooker. I'm just glad my fat, ugly
+                    mama isn't alive to see this day. Wow! A superpowers drug you can just rub onto your skin? You'd
+                    think it would be something you'd have to freebase. Well, let's just dump it in the sewer and say we
+                    delivered it. You guys realize you live in a sewer, right? </p>
+                  <p><strong>Example: </strong>Oh Leela! You're the only person I could turn to; you're the only person
+                    who ever loved me.</p>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="accordion-tab-4-heading-4">
+                <h5>
+                  <button class="btn btn-link" type="button" data-toggle="collapse"
+                    data-target="#accordion-tab-4-content-4" aria-expanded="false"
+                    aria-controls="accordion-tab-4-content-4">Take me to your leader?</button>
+                </h5>
+              </div>
+              <div class="collapse" id="accordion-tab-4-content-4" aria-labelledby="accordion-tab-4-heading-4"
+                data-parent="#accordion-tab-4">
+                <div class="card-body">
+                  <p>PUNY HUMAN NUMBER ONE, PUNY HUMAN NUMBER TWO, and Morbo's good friend, Richard Nixon. Interesting.
+                    No, wait, the other thing: tedious. All I want is to be a monkey of moderate intelligence who wears
+                    a suit… that's why I'm transferring to business school! Morbo can't understand his teleprompter
+                    because he forgot how you say that letter that's shaped like a man wearing a hat.</p>
+                  <p><strong>Example: </strong>If rubbin' frozen dirt in your crotch is wrong, hey I don't wanna be
+                    right.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="tab5" role="tabpanel" aria-labelledby="tab5">
+          <div class="accordion" id="accordion-tab-5">
+            <div class="card">
+              <div class="card-header" id="accordion-tab-5-heading-1">
+                <h5>
+                  <button class="btn btn-link" type="button" data-toggle="collapse"
+                    data-target="#accordion-tab-5-content-1" aria-expanded="false"
+                    aria-controls="accordion-tab-5-content-1">How to create a start-up |<span class="text-100">First
+                      steps</span></button>
+                </h5>
+              </div>
+              <div class="collapse show" id="accordion-tab-5-content-1" aria-labelledby="accordion-tab-5-heading-1"
+                data-parent="#accordion-tab-5">
+                <div class="card-body">
+                  <h3>
+                    The Complete 35-Step Guide For Entrepreneurs Starting A Business<br>
+                    <small class="text-100">According to Forbes</small>
+                  </h3>
+
+                  <div class="article-body fs-article fs-responsive-text current-article">
+                    <p>Starting a business entails understanding and dealing with many issues—legal, financing, sales
+                      and marketing, intellectual property protection, liability protection, human resources, and
+                      more.&nbsp;But interest in entrepreneurship is at an all-time high.&nbsp;And there have been
+                      spectacular success stories of early stage startups growing to be multi-billion-dollar companies,
+                      such as Uber, Facebook, WhatsApp, Airbnb, and many others.</p>
+                    <p>In this article, I give an overview of 35 key steps for entrepreneurs who are starting a
+                      business, with links to additional articles addressing some of the topics in more depth.</p>
+                    <h5>1. Understand the Commitment and Challenges Involved in Starting a Business</h5>
+                    <p>Starting a business is a huge commitment. Entrepreneurs often fail to appreciate the significant
+                      amount of time, resources, and energy needed to start and grow a business.</p>
+                    <p>Here are some of the biggest challenges to starting and growing a business:</p>
+                    <ul>
+                      <li>Coming up with a great and unique product or service</li>
+                      <li>Having a strong plan and vision for the business</li>
+                      <li>Having sufficient capital and cash flow</li>
+                      <li>Finding great employees</li>
+                      <li>Firing bad employees quickly in a way that doesn’t result in legal liability</li>
+                      <li>Working more than you expected</li>
+                      <li>Not getting discouraged by rejections from customers</li>
+                      <li>Managing your time efficiently</li>
+                      <li>Maintaining a reasonable work/life balance</li>
+                      <li>Knowing when to pivot your strategy</li>
+                      <li>Maintaining the stamina to keep going even when it’s tough</li>
+                    </ul>
+                    <h5>2. Protect Your Personal Assets by Forming the Business as a Corporation or LLC</h5>
+                    <p>Never start a business as a “sole proprietorship,” which can result in your personal assets being
+                      at risk for the debts and liabilities of the business. You will almost always want to start the
+                      business as an S corporation (giving you favorable flow through tax treatment), a C corporation
+                      (which is what most venture capital investors expect to see), or a limited liability company
+                      (LLC). None of those are particularly expensive or difficult to set up. My personal preference is
+                      to start the business as an S corporation, which can then easily be converted to a C corporation
+                      as you bring in investors and issue multiple classes of stock.</p>
+                    <p>Many business owners, however, are under the mistaken impression that they are completely
+                      protected from personal liability by filing a Certificate of Incorporation for a
+                      corporation.&nbsp;This is not true. The mere process of incorporating does not completely protect
+                      the business owners.&nbsp;To lessen the likelihood of such personal or shareholder liability, you
+                      should make sure to adhere to certain procedures:</p>
+                    <ul>
+                      <li><strong>Always use the corporate name.&nbsp;</strong>The name of the corporation should be
+                        used in full, including “Inc.” or “Corp.” on all contracts, invoices, or documents used by the
+                        corporation. This clearly indicates the existence of the&nbsp;corporation as a separate entity.
+                      </li>
+                      <li><strong>Always use proper signature.&nbsp;</strong>This means that you will sign on behalf of
+                        the corporation, using the name of the corporation and your title.&nbsp;You should typically use
+                        the following format when signing contracts on behalf of the corporation:</li>
+                    </ul>
+                    <ul>
+                      <li><strong>Follow all corporate formalities.&nbsp;</strong>This includes following bylaws,
+                        issuing stock properly, holding meetings of the Board of Directors, recording the meeting
+                        minutes, and following other corporate formalities.</li>
+                      <li><strong>Make sure to keep funds separate.&nbsp;</strong>Corporate funds and the funds of
+                        individual shareholders should not be in the same accounts or combined for any reason.</li>
+                      <li><strong>Make sure to keep taxation separate.&nbsp;</strong>The company taxes should be paid
+                        entirely from corporate accounts and separate tax returns filed for the corporation.</li>
+                      <li><strong>All transactions made by the corporation should be clearly separate from any
+                          individual transactions.&nbsp;</strong>Essentially, by never blurring the line between
+                        individual shareholders, owners or the Board of Directors, and the company (which stands as a
+                        separate entity), you run less risk of any personal liabilities for the debts of the business.
+                      </li>
+                    </ul>
+                    <h5>3. Come Up With a Great Name for Your Business</h5>
+                    <p>Selecting the right name for your startup can have a significant impact on your business success.
+                      The wrong name could result in insurmountable legal and business hurdles. Here are some basic tips
+                      on how to name your startup:</p>
+                    <ul>
+                      <li>Avoid hard-to-spell names.</li>
+                      <li>Don’t pick a name that could be limiting as your business grows.</li>
+                      <li>Conduct a thorough Internet search on a proposed name.</li>
+                      <li>Get a “.com” domain name (as opposed to “.net” or another variant).</li>
+                      <li>Conduct a thorough trademark search.</li>
+                      <li>Make sure you and your employees will be happy saying the name.</li>
+                      <li>Come up with five names you like and test market the name with prospective employees,
+                        partners, investors, and potential customers.</li>
+                    </ul>
+                    <p>For more advice, see <a
+                        href="https://www.allbusiness.com/12-tips-naming-startup-business-108592-1.html" target="_blank"
+                        rel="nofollow noopener"
+                        data-ga-track="ExternalLink:https://www.allbusiness.com/12-tips-naming-startup-business-108592-1.html"
+                        aria-label="12 Tips for Naming Your Startup Business">12 Tips for Naming Your Startup
+                        Business</a>.</p>
+                    <h5>4. Focus on Building a Great Product—But Don’t Take Forever to Launch</h5>
+                    <p>When starting out, your product or service has to be at least good if not great. It must be
+                      differentiated in some meaningful and important way from the offerings of your competition‎.
+                      Everything else follows from this key principle. Don’t drag your feet on getting your product out
+                      to market, since early customer feedback is one of the best ways to help improve your product. Of
+                      course, you want a “minimum viable product” (MVP) to begin with, but even that product should be
+                      good and differentiated from the competition. Having a “beta” test product works for many startups
+                      as they work the bugs out from user reactions.&nbsp;As Sheryl Sandberg, COO of Facebook has said,
+                      “Done is better than perfect.”</p>
+                    <p><strong>Other Articles From&nbsp;<a href="https://www.allbusiness.com/" target="_blank"
+                          rel="nofollow noopener" data-ga-track="ExternalLink:https://www.allbusiness.com/"
+                          aria-label="AllBusiness.com">AllBusiness.com</a>:</strong></p>
+                    <ul>
+                      <li><a
+                          href="https://www.allbusiness.com/starting-a-business-complete-guide-entrepreneurs-117513-1.html"
+                          target="_blank" rel="nofollow noopener"
+                          data-ga-track="ExternalLink:https://www.allbusiness.com/starting-a-business-complete-guide-entrepreneurs-117513-1.html"
+                          aria-label="The Complete 35-Step Guide for Entrepreneurs Starting a Business">The Complete
+                          35-Step Guide for Entrepreneurs Starting a Business</a></li>
+                      <li><a
+                          href="https://www.allbusiness.com/25-frequently-asked-questions-on-starting-a-business-8225-1.html"
+                          target="_blank" rel="nofollow noopener"
+                          data-ga-track="ExternalLink:https://www.allbusiness.com/25-frequently-asked-questions-on-starting-a-business-8225-1.html"
+                          aria-label="25 Frequently Asked Questions on Starting a Business">25 Frequently Asked
+                          Questions on Starting a Business</a></li>
+                      <li><a
+                          href="https://www.allbusiness.com/50-questions-angel-investors-will-ask-entrepreneurs-106619-1.html"
+                          target="_blank" rel="nofollow noopener"
+                          data-ga-track="ExternalLink:https://www.allbusiness.com/50-questions-angel-investors-will-ask-entrepreneurs-106619-1.html"
+                          aria-label="50 Questions Angel Investors Will Ask Entrepreneurs">50 Questions Angel Investors
+                          Will Ask Entrepreneurs</a></li>
+                      <li><a
+                          href="https://www.allbusiness.com/17-key-lessons-entrepreneurs-starting-business-109554-1.html"
+                          target="_blank" rel="nofollow noopener"
+                          data-ga-track="ExternalLink:https://www.allbusiness.com/17-key-lessons-entrepreneurs-starting-business-109554-1.html"
+                          aria-label="17 Key Lessons for Entrepreneurs Starting A Business">17 Key Lessons for
+                          Entrepreneurs Starting A Business</a></li>
+                    </ul>
+                    <h5>5. Build a Great Website for Your Company</h5>
+                    <p>You should devote time and effort to building a great website for your business. Prospective
+                      investors, customers, and partners are going to check out your site, and you want to impress them
+                      with a professional product. Here are some tips for building a great company website:</p>
+                    <ul>
+                      <li>Check out competitor sites.</li>
+                      <li>Start by sketching out a template for your site.</li>
+                      <li>Come up with five or six sites you can share with your web site developer to convey what you
+                        like.</li>
+                      <li>Be sure the site is search engine optimized (and thus more likely to show up early on Google
+                        search results).</li>
+                      <li>Produce high-quality original content.</li>
+                      <li>Make sure your site is optimized for mobile devices.</li>
+                      <li>Make sure the site loads quickly.</li>
+                      <li>Keep it clean and simple; visual clutter will drive visitors away.</li>
+                      <li>Make sure you have a Terms of Use Agreement and Privacy Policy (and comply with the European
+                        GDPR rules).</li>
+                      <li>Make the navigation bars prominent.</li>
+                      <li>Obtain and use a memorable “.com” domain name.</li>
+                      <li>Make the site visually interesting.</li>
+                      <li>Make sure it’s easy for site visitors to contact you or buy your product.</li>
+                    </ul>
+                    <h5>6. Perfect Your Elevator Pitch</h5>
+                    <p>An “elevator” pitch is intended to be a concise, compelling introduction to your business. You
+                      should be able to slightly modify your elevator pitch depending on whether you are pitching to
+                      prospective investors, customers, employees, or partners. Here are a few tips for developing and
+                      delivering a great elevator pitch:</p>
+                    <ul>
+                      <li>Start out strong.</li>
+                      <li>Be positive and enthusiastic in your delivery.</li>
+                      <li>Remember that practice makes perfect.</li>
+                      <li>Keep it to 60 seconds in length.</li>
+                      <li>Avoid using industry jargon.</li>
+                      <li>Convey why your business is unique.</li>
+                      <li>Pitch the problem you are solving.</li>
+                      <li>Invite participation or interruption by the listener—this shows they are interested and
+                        engaged.</li>
+                    </ul>
+                    <h5>7. Make the Deal Clear With Co-Founders</h5>
+                    <p>If you start your company with co-founders, you should agree early on about the details of your
+                      business relationship. Not doing so can potentially cause significant legal problems down the road
+                      (a good example of this is the infamous Zuckerberg/Winklevoss Facebook litigation). In a way,
+                      think of the founder agreement as a form of “pre-nuptial agreement.” Here are the key deal terms
+                      your written founder agreement needs to address:</p>
+                    <ul>
+                      <li>How is the equity split among the founders?</li>
+                      <li>Is the percentage of ownership subject to vesting based on continued participation in the
+                        business?</li>
+                      <li>What are the roles and responsibilities of the founders?</li>
+                      <li>If one founder leaves, does the company or the other founder have the right to buy back that
+                        founder’s shares? At what price?</li>
+                      <li>How much time commitment to the business is expected of each founder?</li>
+                      <li>What salaries (if any) are the founders entitled to? How can that be changed?</li>
+                      <li>How are key decisions and day-to-day decisions of the business to be made? (by majority vote,
+                        unanimous vote, or are certain decisions solely in the hands of the CEO?)</li>
+                      <li>Under what circumstances can a founder be removed as an employee of the business? (usually,
+                        this would be a Board decision)</li>
+                      <li>What assets or cash does each founder contribute or invest into the business?</li>
+                      <li>How will a sale of the business be decided?</li>
+                      <li>What happens if one founder isn’t living up to expectations under the founder agreement? How
+                        will it be resolved?</li>
+                      <li>What is the overall goal and vision for the business?</li>
+                      <li>If one founder wants to leave the business, does the company have the right to buy back his or
+                        her shares?&nbsp;At what price?</li>
+                    </ul>
+                    <h5>8. Obtain a Tax ID</h5>
+                    <p>In most instances, you will need to get a tax ID from the IRS for your company. This is also
+                      known as an “Employer Identification Number” (EIN), and it’s similar to a Social Security number,
+                      but for businesses. Banks will ask for your EIN when you open a company bank account. You can get
+                      an <a
+                        href="https://www.irs.gov/businesses/small-businesses-self-employed/apply-for-an-employer-identification-number-ein-online"
+                        target="_blank" rel="nofollow noopener"
+                        data-ga-track="ExternalLink:https://www.irs.gov/businesses/small-businesses-self-employed/apply-for-an-employer-identification-number-ein-online"
+                        aria-label="EIN online">EIN online</a>&nbsp;through the IRS website.</p>
+                    <p>In some states, a state tax ID may be necessary as well (for example, California, New York, and
+                      Texas require a state ID, which can be obtained online).</p>
+                    <h5>9. Set Up a Good Accounting and Bookkeeping System</h5>
+                    <p>You will need to set up a bookkeeping/accounting system to keep track of your finances—income,
+                      expenses, capital expenditures, EBITDA, profit and loss, etc. This is important in order to
+                      understand your business’s cash flow situation and also for tax-filing purposes.</p>
+                    <p>There are a number of online software solutions that can be helpful in this regard, such as <a
+                        href="https://quickbooks.intuit.com/" target="_blank" rel="nofollow noopener"
+                        data-ga-track="ExternalLink:https://quickbooks.intuit.com/"
+                        aria-label="QuickBooks">QuickBooks</a>,&nbsp;<a href="https://www.zoho.com/" target="_blank"
+                        rel="nofollow noopener" data-ga-track="ExternalLink:https://www.zoho.com/"
+                        aria-label="Zoho">Zoho</a>, <a href="https://www.freshbooks.com/" target="_blank"
+                        rel="nofollow noopener" data-ga-track="ExternalLink:https://www.freshbooks.com/"
+                        aria-label="FreshBooks">FreshBooks</a>, and <a
+                        href="https://www.xero.com/us/try/online-accounting/?gclid=CjwKCAjw8r_XBRBkEiwAjWGLlN5kua0D2UsZOWwybh-EKBlEFNnl_T7v6z9Ylk6688CL9a-rLnyPNhoCPdIQAvD_BwE&amp;gclsrc=aw.ds&amp;dclid=CP3Rltef9NoCFUK9TwodI08O3Q"
+                        target="_blank" rel="nofollow noopener"
+                        data-ga-track="ExternalLink:https://www.xero.com/us/try/online-accounting/?gclid=CjwKCAjw8r_XBRBkEiwAjWGLlN5kua0D2UsZOWwybh-EKBlEFNnl_T7v6z9Ylk6688CL9a-rLnyPNhoCPdIQAvD_BwE&amp;gclsrc=aw.ds&amp;dclid=CP3Rltef9NoCFUK9TwodI08O3Q"
+                        aria-label="Xero">Xero</a>.</p>
+                    <h5>10. Perform a Comprehensive Reference Check Before You Hire an Employee</h5>
+                    <p>Many employers conduct a limited and incomplete reference check when interviewing job candidates,
+                      which can result in hiring people who are unable to perform their required duties or who don’t
+                      work well with others. A comprehensive reference check includes:</p>
+                    <ul>
+                      <li>Verification of job titles and dates of employment</li>
+                      <li>Verification of educational degrees and dates of attendance at schools</li>
+                      <li>Verification of starting and ending salary</li>
+                      <li>Verification of prior job role and responsibilities</li>
+                      <li>Inquiry as to why the applicant left the prior employer</li>
+                      <li>Conversations with prior supervisors as to the applicant’s strengths and weaknesses</li>
+                      <li>Inquiry as to the applicant’s ability to get along well with other employees and customers
+                      </li>
+                      <li>Inquiry as to the applicant’s ability to take on the new role</li>
+                      <li>Inquiry as to punctuality or absenteeism issues</li>
+                      <li>Reference checks with other people not listed by the applicant as a reference</li>
+                    </ul>
+                    <p>The purpose of these checks is to make sure that the applicant will fit into the company’s
+                      culture and to ensure that they have been truthful and accurate in their resume and employment
+                      application. However, the process is carefully regulated by the federal government (through the
+                      Fair Credit Reporting Act) and the laws of many states; failure to follow the highly technical
+                      process can lead to class action lawsuits. Consider consulting legal counsel and, for general
+                      information, see the <a
+                        href="https://www.eeoc.gov/eeoc/publications/background_checks_employers.cfm" target="_blank"
+                        rel="nofollow noopener"
+                        data-ga-track="ExternalLink:https://www.eeoc.gov/eeoc/publications/background_checks_employers.cfm"
+                        aria-label="EEOC’s Background Checks: What Employers Need to Know">EEOC’s Background Checks:
+                        What Employers Need to Know</a>.</p>
+                    <p>It is also useful to require all prospective employees to complete an employment application.</p>
+                    <h5>11. Use a Good Form of Employee Offer Letter or Employment Agreement</h5>
+                    <p>Oral agreements often lead to misunderstandings. If you plan to hire a prospective employee, use
+                      a carefully drafted offer letter, which the employee should be encouraged to review carefully
+                      before signing. For senior executives, a more detailed employment agreement often makes sense. A
+                      good offer letter or employment agreement will address the following key items:</p>
+                    <ul>
+                      <li>The job title and role of the employee</li>
+                      <li>Whether the job is full time or part time</li>
+                      <li>When the job will commence</li>
+                      <li>The salary, benefits, and any potential bonuses</li>
+                      <li>Whether the position is “at will” employment, meaning either party is free to terminate the
+                        relationship at any time without penalty (although employers may not terminate employees for
+                        legally prohibited reasons, such as for age discrimination or retaliation from sexual harassment
+                        allegations, etc.)</li>
+                      <li>Confirmation that the “at will” agreement may not be changed unless signed by an authorized
+                        officer of the company</li>
+                      <li>Confirmation that the employee will need to sign a separate Confidentiality and Invention
+                        Assignment Agreement (described below)</li>
+                      <li>If the company chooses, a statement that any disputes between the parties will be resolved
+                        solely and exclusively by confidential binding arbitration (also discussed below)</li>
+                      <li>Any stock options to be granted to the employee and the terms of any vesting (details usually
+                        laid out in a separate Stock Option Agreement)</li>
+                      <li>The supervisor to whom the employee will report</li>
+                      <li>Protective language stating that the offer letter constitutes the entire agreement and
+                        understanding of the parties with respect to the employment relationship, and that there are no
+                        other agreements or benefits expected (unless additional provisions are laid out in a handbook,
+                        which should be referenced if applicable)</li>
+                    </ul>
+                    <p>Companies should ensure that the employee and the company sign the letter, the Confidentiality
+                      and Invention Assignment Agreement, any Stock Option Agreement, and any first-day paperwork (such
+                      as the IRS W-4 Form for withholding and the I-9 form mandated by law).</p>
+                    <p>
+                      Keep reading <a
+                        href="https://www.forbes.com/sites/allbusiness/2018/07/15/35-step-guide-entrepreneurs-starting-a-business/#1fa67e96184b"
+                        target="_blank">here</a>
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="tab6" role="tabpanel" aria-labelledby="tab6">
+          <div class="accordion" id="accordion-tab-6">
+            <div class="card">
+              <div class="card-header" id="accordion-tab-6-heading-1">
+                <h5>
+                  <button class="btn btn-link" type="button" data-toggle="collapse"
+                    data-target="#accordion-tab-6-content-1" aria-expanded="false"
+                    aria-controls="accordion-tab-6-content-1">Doomsday device?</button>
+                </h5>
+              </div>
+              <div class="collapse show" id="accordion-tab-6-content-1" aria-labelledby="accordion-tab-6-heading-1"
+                data-parent="#accordion-tab-6">
+                <div class="card-body">
+                  <p>Ah, now the ball's in Farnsworth's court! We'll need to have a look inside you with this camera.
+                    Stop it, stop it. It's fine. I will 'destroy' you! Bender! Ship! Stop bickering or I'm going to come
+                    back there and change your opinions manually!</p>
+                  <p><strong>Example: </strong>So I really am important? How I feel when I'm drunk is correct?</p>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="accordion-tab-6-heading-2">
+                <h5>
+                  <button class="btn btn-link" type="button" data-toggle="collapse"
+                    data-target="#accordion-tab-6-content-2" aria-expanded="false"
+                    aria-controls="accordion-tab-6-content-2">And so we say goodbye to our beloved pet,
+                    Nibbler?</button>
+                </h5>
+              </div>
+              <div class="collapse" id="accordion-tab-6-content-2" aria-labelledby="accordion-tab-6-heading-2"
+                data-parent="#accordion-tab-6">
+                <div class="card-body">
+                  <p>Nibbler, who's gone to a place where I, too, hope one day to go. The toilet. But existing is
+                    basically all I do! I suppose I could part with 'one' and still be feared. I just told you! You've
+                    killed me!</p>
+                  <p><strong>Example: </strong>What's with you kids? Every other day it's food, food, food.</p>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="accordion-tab-6-heading-3">
+                <h5>
+                  <button class="btn btn-link" type="button" data-toggle="collapse"
+                    data-target="#accordion-tab-6-content-3" aria-expanded="false"
+                    aria-controls="accordion-tab-6-content-3">Tell her you just want to talk?</button>
+                </h5>
+              </div>
+              <div class="collapse" id="accordion-tab-6-content-3" aria-labelledby="accordion-tab-6-heading-3"
+                data-parent="#accordion-tab-6">
+                <div class="card-body">
+                  <p>It has nothing to do with mating. Soon enough. There, now he's trapped in a book I wrote: a crummy
+                    world of plot holes and spelling errors! Daylight and everything. Hey! I'm a porno-dealing monster,
+                    what do I care what you think?</p>
+                  <p><strong>Example: </strong>Is that a cooking show? It doesn't look so shiny to me. And why did 'I'
+                    have to take a cab?</p>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="accordion-tab-6-heading-4">
+                <h5>
+                  <button class="btn btn-link" type="button" data-toggle="collapse"
+                    data-target="#accordion-tab-6-content-4" aria-expanded="false"
+                    aria-controls="accordion-tab-6-content-4">Good man. Nixon's pro-war and pro-family?</button>
+                </h5>
+              </div>
+              <div class="collapse" id="accordion-tab-6-content-4" aria-labelledby="accordion-tab-6-heading-4"
+                data-parent="#accordion-tab-6">
+                <div class="card-body">
+                  <p>I don't 'need' to drink. I can quit anytime I want! THE BIG BRAIN AM WINNING AGAIN! I AM THE
+                    GREETEST! NOW I AM LEAVING EARTH, FOR NO RAISEN! There's one way and only one way to determine if an
+                    animal is intelligent. Dissect its brain!</p>
+                  <p><strong>Example: </strong>Guess again. Yeah, I do that with my stupidness. And when we woke up, we
+                    had these bodies.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Footer-->
+<app-footer></app-footer>

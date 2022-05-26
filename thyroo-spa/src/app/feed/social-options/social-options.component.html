@@ -1,0 +1,36 @@
+<div class="social-count">
+  <div class="likes-count">
+    <span [ngClass]="{'text-primary': heartLiked}">
+      <a class="pointer btn-like" (click)="like(itemId)">
+        <span *ngIf="!heartLiked">
+          <svg width="24px" height="24px" viewBox="0 0 24 24">
+            <g id="upvote" class="icon_svg-stroke icon_svg-fill" stroke-width="1.5" stroke="#9c081b" fill="none"
+              fill-rule="evenodd" stroke-linejoin="round">
+              <polygon points="12 4 3 15 9 15 9 20 15 20 15 15 21 15"></polygon>
+            </g>
+          </svg>
+        </span>
+      </a>
+      <a *ngIf="heartLiked" class="pointer text-thyroo" (click)="unLike(itemId)">
+        <span>
+          <svg width="24px" height="24px" viewBox="0 0 24 24">
+            <g id="upvote" class="icon_svg-stroke icon_svg-fill" stroke-width="1.5" stroke="#9c081b" fill="#9c081b"
+              fill-rule="evenodd" stroke-linejoin="round">
+              <polygon points="12 4 3 15 9 15 9 20 15 20 15 15 21 15"></polygon>
+            </g>
+          </svg>
+          <small class="text-thyroo ml-1 like">Liked</small>
+        </span>
+      </a>
+    </span>
+    <span class="ml-1">{{likeCounter}}</span>
+  </div>
+  <div class="comments-count">
+    <span>
+      <a [routerLink]="['/feed/single/', itemId]" class="text-thyroo">
+        <i class="far fa-comment-dots"></i>
+      </a>
+    </span>
+    <span class="ml-1">{{commentsCounter}}</span>
+  </div>
+</div>

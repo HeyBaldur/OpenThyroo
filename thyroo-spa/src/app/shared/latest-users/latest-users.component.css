@@ -1,0 +1,92 @@
+.card .card-body .story-block {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 16px 16px
+}
+
+.card .card-body .story-block:not(:first-child) {
+  border-top: 1px solid #e8e8e8
+}
+
+.card .card-body .story-block .img-wrapper {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 48px;
+  width: 48px;
+  max-height: 48px;
+  min-width: 48px;
+  border-radius: 50%;
+  border: 1px solid #888da8
+}
+
+.card .card-body .story-block .img-wrapper img {
+  height: 38px;
+  width: 38px;
+  border-radius: 50%
+}
+
+.card .card-body .story-block .add-story {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 44px;
+  width: 44px;
+  max-height: 44px;
+  min-width: 44px;
+  border-radius: 50%;
+  border: 2px dashed #e8e8e8;
+  transition: all .3s
+}
+
+.card .card-body .story-block .add-story svg {
+  width: 18px;
+  height: 18px;
+  stroke: #e8e8e8
+}
+
+.card .card-body .story-block .add-story:hover {
+  border: 2px solid #ff5f59
+}
+
+.card .card-body .story-block .add-story:hover svg {
+  stroke: #ff5f59
+}
+
+.card .card-body .story-block .story-meta {
+  padding: 0 10px
+}
+
+.card .card-body .story-block .story-meta span {
+  display: block
+}
+
+.card .card-body .story-block .story-meta span:first-child {
+  font-size: .85rem;
+  color: #393a4f;
+  font-weight: 500
+}
+
+.card .card-body .story-block .story-meta span:nth-child(2) {
+  font-size: .8rem;
+  color: #757a91
+}
+
+.users-block-title {
+    margin-left: 22px;
+}
+
+.o__c {
+  line-height: 14px;
+  color: #212529;
+}

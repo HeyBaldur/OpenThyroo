@@ -1,0 +1,82 @@
+<!-- <div *ngIf="displayValidator">
+  <div *ngIf="!displayFeature?.businessProfile || !displayFeature?.businessInterests">
+    <div class="main-container"></div>
+  </div>
+</div> -->
+
+<div *ngIf="displayValidator" class="complete-profile">
+  <div *ngIf="!displayFeature?.businessProfile || !displayFeature?.businessInterests">
+    <div class="card mb-1">
+      <div class="card-body">
+        <h2 class="text-thyroo">
+          Congratulations {{name}}!
+        </h2>
+        <label>
+          You have completed the first step, let's go for more. <a class="text-thyroo"
+            popover="Creating a business profile might improve your connection network, we strongly 
+            recommend you to create one to let the community know about you."
+            popoverTitle="Why should I create a business profile?" triggers="mouseenter:mouseleave"
+            [routerLink]="['/profile']">Create a business profile</a> and
+          <a popover="The business preferences will let other users find what you are looking for, for example, if you are looking for an investor, investors might find you easily, the same could happen for any other topics and preferences."
+            popoverTitle="Why should I add a business preference?" triggers="mouseenter:mouseleave" class="text-thyroo"
+            [routerLink]="['/profile/interests']">add business preferences</a> to connect with
+          people, send/receive messages, and do more.
+        </label>
+      </div>
+    </div>
+
+    <div class="card-group">
+      <div class="card">
+        <img src="https://c1.sfdcstatic.com/content/dam/blogs/legacy/2014/05/6a00e54ee3905b883301a73dc2389e970.jpg"
+          class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><del>Create an account</del></h5>
+          <p class="card-text text-sm"><del>Create a free account to start meeting business people faster and
+              smarter.</del></p>
+        </div>
+      </div>
+      <div class="card">
+        <a [ngClass]="{'decoration-none': displayFeature?.businessProfile}" [routerLink]="['/profile']"
+          routerLinkActive="router-link-active">
+          <img src="https://image.freepik.com/free-photo/businessman-showing-changes-report_1098-3504.jpg"
+            class="card-img-top" alt="...">
+          <div class="card-body">
+            <div *ngIf="displayFeature?.businessProfile == true">
+              <h5 class="card-title text-dark decoration-none"><del>Add business profile</del></h5>
+              <p class="card-text text-sm text-dark decoration-none"><del>Add a business profile to let other people
+                  know
+                  you better and match other
+                  profiles.</del></p>
+            </div>
+            <div *ngIf="displayFeature?.businessProfile == false">
+              <h5 class="card-title">Add business profile</h5>
+              <p class="card-text text-sm">Add a business profile to let other people know you better and match other
+                profiles.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="card">
+        <a [ngClass]="{'decoration-none': displayFeature?.businessInterests}" [routerLink]="['/profile/interests']"
+          routerLinkActive="router-link-active">
+          <img src="https://assets.entrepreneur.com/content/3x2/2000/20160523072414-shutterstock-128200295.jpeg"
+            class="card-img-top" alt="...">
+          <div class="card-body">
+            <div *ngIf="displayFeature?.businessInterests == true">
+              <h5 class="card-title text-dark decoration-none"><del>Add business interests</del></h5>
+              <p class="card-text text-sm text-dark decoration-none"><del>Add a business intersts to increase the
+                  chances
+                  to meet more business people.</del></p>
+            </div>
+            <div *ngIf="displayFeature?.businessInterests == false">
+              <h5 class="card-title">Add business interests</h5>
+              <p class="card-text text-sm">Add a business intersts to increase the chances to meet more business people.
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <hr>
+  </div>
+</div>

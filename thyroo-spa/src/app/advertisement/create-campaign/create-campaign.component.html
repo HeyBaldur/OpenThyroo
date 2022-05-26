@@ -1,0 +1,81 @@
+<app-navigation></app-navigation>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 pr-1 mt-1">
+      <div class="card">
+        <div class="card-body">
+          <form [formGroup]="campaignForm">
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-sm" placeholder="Name of campaign"
+                    formControlName="adName" name="adName" required>
+                  <small
+                    *ngIf="campaignForm.controls['adName'].touched && campaignForm.controls['adName'].hasError('required')"
+                    class="text-danger">
+                    Please a name to your campaign
+                  </small>
+                </div>
+              </div>
+              <div class="col-md-6 pl-1 theme-default">
+                <input type="text" placeholder="Campaign ends" class="form-control form-control-sm theme-default"
+                  bsDatepicker [bsConfig]="datePickerConfig" formControlName="ends" [minDate]="minDate"
+                  [maxDate]="maxDate" required>
+                <small
+                  *ngIf="campaignForm.controls['ends'].touched && campaignForm.controls['ends'].hasError('required')"
+                  class="text-danger">
+                  Please an ending date
+                </small>
+              </div>
+            </div>
+            <small class="form-text text-muted">
+              Campaign Manager is the advertising platform on Thyroo. After you create a free account, the platform
+              will guide you through each step of setting up your first campaign. Learn how to prepare for your first
+              Thyroo campaign, and then read on for an overview of the key steps in this process.
+            </small><br>
+            <h4>Choose your objective</h4>
+            <small class="form-text text-muted">
+              You can target with professional traits—like job title, company name, and industry type, target by
+              professional or personal interests, or customize by bringing in your own data using Matched
+              Audiences—which includes retargeting, email contact targeting, and account-based targeting.
+            </small>
+            <div class="row">
+              <div class="col-md-12">
+                <button popover="Your objective and ad campaigns cannot be changed once you save. Do you want to save?"
+                  popoverTitle="Confirm and save" triggers="mouseenter:mouseleave" [disabled]="campaignForm.invalid"
+                  (click)="createCampaign()" type="submit" class="btn btn-thyroo btn-sm mt-3 float-right">
+                  <small class="ml-3 mr-3">
+                    <b>Create campaign</b>
+                  </small>
+                </button>
+                <a class="btn btn-outline-dark btn-sm mt-3" [routerLink]="['/business/campaignmanager']"
+                  routerLinkActive="router-link-active">
+                  <small class="ml-3 mr-3">
+                    <b>Cancel campaign</b>
+                  </small>
+                </a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 pl-1">
+      <div class="card mt-1">
+        <div class="card-body">
+          <h5 class="card-title">Create a Campaign</h5>
+          <p class="card-text text-sm">
+            The reach objective maximizes the number of people who see your ads and how often they see them. With this
+            objective, you can choose to maximize your reach or impressions for the entire duration of your campaign.
+            You can also set frequency controls for how many times a person sees your ad and the minimum number of days
+            between each time they see it.
+          </p>
+        </div>
+      </div>
+      <app-help-links></app-help-links>
+    </div>
+  </div>
+</div>
+
+
+<app-full-screen-loader *ngIf="loader"></app-full-screen-loader>

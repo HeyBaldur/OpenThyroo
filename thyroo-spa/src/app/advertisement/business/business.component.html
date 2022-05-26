@@ -1,0 +1,63 @@
+<app-navigation></app-navigation>
+<section class="hero hero-home bg-gray">
+  <div class="container">
+    <div class="row d-flex">
+      <div class="col-lg-6 text order-2 order-lg-1">
+        <h1>Advertise on Thyroo<br>For free today!</h1>
+        <p class="mt-3">
+          People visit Thyroo every day to ask questions, share information, and read insightful answers. Advertise on
+          Thyroo to reach millions of people who are already looking for business information that relates to your
+          business or industry.<br>
+          <small class="text-100">Every account can post free ads, no credit card needed</small>
+        </p>
+        <div class="mt-3">
+          <a [routerLink]="['/business/campaignmanager']" routerLinkActive="router-link-active"
+            class="btn btn-thyroo btn-lg">
+            <span class="ml-3 mr-3">
+              Start now for free
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-6 order-1 order-lg-2"><img src="../../../assets/images/business/hero.svg" alt="..."
+          class="img-fluid"></div>
+    </div>
+  </div>
+</section>
+
+<section class="hero hero-home bg-thyroo">
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col-md-12">
+        <h4>
+          Grow your business from anywhere.
+        </h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h5>Reach more people</h5>
+        <p>
+          Users on Thyroo create profiles based on their real business and professional experience, so the information
+          you share will be spread through the communities. Maybe you are wondering, about the costs? Well, we offer a
+          free ad system to reach the right people, no catch.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <h5>Free ads vs paid ads</h5>
+        <p>
+          Many other websites and communities offer you pay per click, pay per view, or any other payment method which
+          results to be very expensive. Thyroo thinks in their users and this is why we offer a different methodology.
+          So, why don't you start with a free ad service?
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="text-muted mt-auto">
+  <div class="container text-center">
+    <img class="footer__logo mx-auto d-block" src="../../assets/images/Thyroo-logo-full.png">
+    <app-help-links></app-help-links>
+  </div>
+</footer>

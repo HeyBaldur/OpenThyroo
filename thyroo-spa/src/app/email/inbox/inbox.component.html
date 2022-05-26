@@ -1,0 +1,61 @@
+<app-navigation></app-navigation>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 pr-1">
+      <div class="messaging">
+        <div class="inbox_msg">
+
+          <div class="inbox_people">
+            <div class="headind_srch">
+              <div class="recent_heading">
+                <h5>Messaging</h5>
+              </div>
+            </div>
+            <div class="inbox_chat">
+              <app-contacts-aside></app-contacts-aside>
+            </div>
+          </div>
+          <div class="mesgs">
+            <div class="msg_history mb-3">
+              <div class="conversation-not-found">
+                <h4 class="text-center">
+                  Hi! Pick a contact to send a message
+                </h4>
+                <h5 class="text-center text-100">
+                  Play by the rules, but be ferocious.<br>
+                  <i><strong>Phil Knight</strong></i>
+                </h5>
+              </div>
+              <div class="my-3 p-3 mr-3 rounded">
+                <div *ngFor="let email of emails">
+                  <div *ngIf="!email.read" class="media text-muted pt-3">
+                    <img class="bd-placeholder-img mr-2 rounded" width="32" height="32" src="{{email.sender.photoUrl}}">
+                    <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                      <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark">
+                          {{email.sender.firstName}} {{email.sender.lastName}}
+                          <span class="badge badge-secondary">New message</span>
+                        </strong>
+                        <a [routerLink]="['/email/thread/', email.senderId]">View thread</a>
+                      </div>
+                      <span class="d-block">{{email.messageSent | timeAgo}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 pl-1">
+      <div class="h5">@<strong>Thyroo.com</strong></div>
+      <p class="text-sm text-muted">
+        Thyroo offers a category list to help professionals to target their audience easily and effortlessly, however,
+        Thyroo members can enjoy the updates, shared information, articles, and more.
+      </p>
+      <hr>
+      <app-help-links></app-help-links>
+    </div>
+  </div>
+</div>

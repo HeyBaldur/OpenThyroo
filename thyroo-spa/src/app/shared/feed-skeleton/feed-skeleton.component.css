@@ -1,0 +1,106 @@
+.img-skeleton {
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50%;
+  }
+  
+  .skeleton-box {
+    display: inline-block;
+    height: 1em;
+    position: relative;
+    overflow: hidden;
+    background-color: #DDDBDD;
+  }
+  
+  .skeleton-box::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0, rgba(255, 255, 255, 0)), color-stop(20%, rgba(255, 255, 255, 0.2)), color-stop(60%, rgba(255, 255, 255, 0.5)), to(rgba(255, 255, 255, 0)));
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.2) 20%, rgba(255, 255, 255, 0.5) 60%, rgba(255, 255, 255, 0));
+    -webkit-animation: shimmer 2s infinite;
+    animation: shimmer 2s infinite;
+    content: '';
+  }
+  
+  @-webkit-keyframes shimmer {
+    100% {
+      -webkit-transform: translateX(100%);
+      transform: translateX(100%);
+    }
+  }
+  
+  @keyframes shimmer {
+    100% {
+      -webkit-transform: translateX(100%);
+      transform: translateX(100%);
+    }
+  }
+  
+  .blog-post__headline {
+    font-size: 1.25em;
+    font-weight: bold;
+  }
+  
+  .blog-post__meta {
+    font-size: 0.85em;
+    color: #6b6b6b;
+  }
+  
+  .o-media {
+    display: -webkit-box;
+    display: flex;
+    margin-left: -40px !important;
+  }
+  
+  .o-media__body {
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    margin-left: 1em;
+  }
+  
+  .o-vertical-spacing>*+* {
+    margin-top: 0.75em;
+  }
+  
+  .o-vertical-spacing--l>*+* {
+    margin-top: 2em;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    max-width: 42em;
+    margin: 0 auto;
+    padding: 3em 1em;
+    font-family: 'Karla', sans-serif;
+    line-height: 1.4;
+  }
+  
+  header {
+    max-width: 42em;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.2em;
+  }
+  
+  main {
+    margin-top: 3em;
+  }
+  
+  header h1 {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    line-height: 1.2;
+    font-size: 2em;
+  }
+  
+  header p:not(:first-child) {
+    margin-top: 1em;
+  }

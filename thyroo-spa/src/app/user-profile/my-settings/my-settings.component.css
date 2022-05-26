@@ -1,0 +1,57 @@
+.list-group,
+.list-group-item {
+  background-color: #fafafa;
+}
+
+.active {
+  z-index: 2;
+  color: #212529;
+  background-color: #eeeeee;
+  border-color: #eeeeee;
+  padding: 1em;
+  margin-left: -13px;
+}
+
+.non {
+  z-index: 2;
+  color: #fafafa;
+  background-color: #fafafa;
+  border-color: #fafafa;
+  padding: 1em;
+  margin-left: -13px;
+}
+
+.aside_nav {
+  list-style-type: none;
+  text-decoration: none;
+  font-size: 12px;
+  color: black;
+  padding: 2%;
+}
+
+.aside_nav a {
+  text-decoration: none;
+  color: #212529;
+}
+
+.options {
+    margin-left: -25px;
+}
+
+td {
+  width: 50%;
+  max-width: 50%;
+  white-space: pre-wrap;        /* css */
+  white-space: -moz-pre-wrap;   /* Mozilla */
+  white-space: -pre-wrap;       /* Chrome*/
+  white-space: -o-pre-wrap;     /* Opera 7 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+
+.gmail-logo {
+  width: 100px;
+}
+
+a {
+  font-weight: 500;
+}

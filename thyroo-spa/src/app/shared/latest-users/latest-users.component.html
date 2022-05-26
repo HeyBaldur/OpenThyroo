@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-body">
+    <h6 class="users-block-title">
+      Latest users<br>
+      <small>Many new users are signing up, let's meet them!</small>
+    </h6>
+    <div class="story-block" *ngFor="let user of users">
+      <div class="img-wrapper">
+        <img src="{{user.photoUrl}}" data-demo-src="assets/images/avatars/dan.jpg" data-user-popover="1" alt="">
+      </div>
+      <div class="story-meta">
+        <span><a class="text-thyroo" target="_blank" [routerLink]="['/user/', user.id]">{{user.providerFullName}}</a></span>
+        <span>
+          <span class="o__c occupation-title">{{user.occupation}}</span>
+          <span class="o__c">{{user.enrollmentDate | timeAgo}}</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+<app-aside-skeleton-loader *ngIf="loader"></app-aside-skeleton-loader>

@@ -1,0 +1,297 @@
+<app-navigation></app-navigation>
+<div class="container mb-3">
+  <div class="row">
+    <div class="col-md-8 pr-1">
+      <div *ngIf="profile">
+        <div class="card card-widget bg-white border widget-user-2 mt-1">
+          <div class="widget-user-header">
+            <div class="widget-user-image mr-3">
+              <img class="img-circle elevation-2" src="{{profile.photoUrl}}" alt="{{profile.knowAs}}">
+              <img class="img-logo-user-widget" src="../../../assets/images/thyroo-logo-mini.png">
+            </div>
+            <h4 class="widget-user-username pl-1">
+              <span>
+                <!-- <span class="occupation-up">Active user</span> -->
+                {{profile.knowAs}}
+              </span>
+              <app-verified-badge-sm *ngIf="profile.profileVerified"></app-verified-badge-sm>
+            </h4>
+            <h6 class="widget-user-desc pl-1" *ngIf="!profile.emailContactHidden">{{profile.emailContact}}</h6>
+            <h6 class="widget-user-desc text-muted text-100 pl-1" *ngIf="profile.emailContactHidden">
+              The contact email is private
+            </h6>
+          </div>
+        </div>
+
+        <div class="card-footer border mt-1">
+          <div *ngIf="!disabledItem">
+            <button *ngIf="!displayButton" (click)="matchUser(profile.id, profile.userId)" [disabled]="disabledItem"
+              class="btn btn-rounded btn-outline-thyroo btn-sm">
+              <small>
+                <strong class="ml-3 mr-3">
+                  Connect
+                  <i class="fas fa-check"></i>
+                </strong>
+              </small>
+            </button>
+          </div>
+          <button *ngIf="displayButton && !displayMatched" [disabled]="true" class="btn btn-rounded btn-thyroo btn-sm">
+            <small>
+              <strong class="ml-3 mr-3">
+                Pending
+              </strong>
+            </small>
+          </button>
+          <button *ngIf="displayButton && !displayMatched" (click)="removeConnection(profile.id, profile.userId)"
+            class="btn btn-rounded btn-outline-secondary btn-sm ml-1">
+            <small>
+              <strong class="ml-3 mr-3">
+                Cancel request
+                <i class="fas fa-minus-circle"></i>
+              </strong>
+            </small>
+          </button>
+
+          <!-- Button trigger modal -->
+          <button *ngIf="displayMatched" type="button" class="btn btn-rounded btn-outline-dark btn-sm"
+            data-toggle="modal" data-target="#removeConnection">
+            <small>
+              <strong class="ml-3 mr-3">
+                Remove connection
+                <i class="fas fa-minus-circle"></i>
+              </strong>
+            </small>
+          </button>
+
+          <!-- Modal -->
+          <div class="modal" id="removeConnection" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">
+                    Remove {{profile.knowAs}}
+                  </h5>
+                </div>
+                <div class="modal-body">
+                  <ul class="text-sm text-muted">
+                    <li>We won't be notify {{profile.knowAs}}.</li>
+                    <li>After removing a connection, any recommendations or endorsements between you and that person
+                      will be withdrawn. They will not be restored if the connection is reestablished.</li>
+                  </ul>
+                </div>
+                <div class="modal-footer">
+                  <a type="button" class="text-muted text-500 text-sm mr-auto" data-dismiss="modal">Close</a>
+                  <button (click)="removeConnection(profile.id, profile.userId)" *ngIf="displayMatched"
+                    class="btn btn-rounded btn-outline-dark btn-sm float-right">
+                    <small>
+                      <strong class="ml-3 mr-3">
+                        Remove
+                        <i class="fas fa-minus-circle"></i>
+                      </strong>
+                    </small>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a *ngIf="displayMatched" [routerLink]="['/email/thread/', profile.userId]"
+            class="btn btn-outline-thyroo btn-sm mt-1 float-right">
+            <small>
+              <strong class="ml-3 mr-3">
+                <i class="fas fa-envelope"></i>
+                Message
+              </strong>
+            </small>
+          </a>
+
+          <div class="edit" *ngIf="disabledItem">
+            <br>
+            <a [routerLink]="['/profile']" class="text-thyroo">
+              <span class="text-100">Edit my</span>
+              <span><b> Profile</b></span>
+              <i class="fas fa-hand-point-right ml-1"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="card border-danger mt-1" *ngIf="errorFlag">
+          <div class="card-body text-danger">
+            <h5 class="card-title">
+              <strong>
+                <i class="fas fa-exclamation-triangle"></i>
+                Whoops!</strong>
+              something went wrong!
+            </h5>
+            <p class="card-text">
+              It seems you have not created a business profile yet, to connect with users you need to have a business
+              profile, but no worries, you can create one clicking
+              <a [routerLink]="['/profile']" routerLinkActive="router-link-active" class="text-thyroo">here</a>, once
+              you have created it come back here and send your match.
+            </p>
+          </div>
+        </div>
+
+        <app-user-activity [views]="views" [articles]="articles" [userId]="profile.userId"
+          [authorName]="profile.knowAs"></app-user-activity>
+
+        <app-user-business-preferences [businessInterest]="businessInterest"></app-user-business-preferences>
+
+        <div class="card mt-1">
+          <div class="card-body">
+            <div class="cap">
+              <h5 class="occupation-title">
+                {{profile.occupation}} <span class="text-100">in {{profile.companyName}}</span><br>
+                <small>{{profile.city}}</small><br>
+                <div class="cap" *ngIf="profile.website">
+                  <p class="text-muted text-sm">
+                    <a class="text-500 text-thyroo" target="_blank" href="{{profile.website}}">
+                      Visit website
+                    </a>
+                  </p>
+                </div>
+              </h5>
+            </div>
+
+            <div class="cap mt-3">
+              <h6>Summary:</h6>
+              <p class="text-muted" [innerHTML]="profile.summary"></p>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="cap">
+                  <h6>Know as:</h6>
+                  <p class="text-muted">{{profile.knowAs}} ({{profile.experienceYears}}) Experience years</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="cap">
+                  <h6>Currently active:</h6>
+                  <p class="text-muted">
+                    <span *ngIf="profile.currentlyActive">
+                      Yes
+                      <i class="far fa-check-circle text-success"></i>
+                    </span>
+                    <span *ngIf="!profile.currentlyActive">
+                      No
+                      <i class="far fa-check-circle"></i>
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="cap">
+              <h6>Accomplishments:</h6>
+              <p class="text-muted">{{profile.accomplishments}}</p>
+            </div>
+
+            <div class="cap">
+              <h6>Business of Interest:</h6>
+              <p class="p-sm-12"></p>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="cap">
+                  <h6>
+                    Email Contact:
+                  </h6>
+                  <p class="p-sm-12">
+                    <strong *ngIf="!profile.emailContactHidden">{{profile.emailContact}}</strong>
+                    <i class="text-muted" *ngIf="profile.emailContactHidden">
+                      <small class="badge badge-secondary">Email is private</small>
+                    </i>
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="cap">
+                  <h6>
+                    Phone contact:
+                  </h6>
+                  <p class="p-sm-12">
+                    <strong *ngIf="!profile.phoneContactVisibleHidden">{{profile.phoneContact}}</strong>
+                    <i class="text-muted" *ngIf="profile.phoneContactVisibleHidden">
+                      <small class="badge badge-secondary">Phone number is private</small>
+                    </i>
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="cap">
+                  <h6>Skill set description:</h6>
+                  <p class="text-muted">{{profile.skillSet}}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="cap">
+              <h6>Legend:</h6>
+              <p class="text-muted">
+                <strong>{{profile.legend}}</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!profile && !loader">
+        <div class="alert alert-light border mt-1" role="alert">
+          <h4 class="alert-heading text-500">
+            Houston we have a problem!
+          </h4>
+          <p class="text-500">
+            The requested user might not exist or the user have not created any business profile yet, to have
+            better results we recommend you to use
+            <a class="text-thyroo" [routerLink]="['/user/b/search']" routerLinkActive="router-link-active">search
+              business profiles</a>.
+          </p>
+          <hr>
+          <a class="btn btn-sm btn-dark" [routerLink]="['/user/b/search']" routerLinkActive="router-link-active">
+            <span class="ml-3 mr-3">
+              <small><strong>Search users</strong></small>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 pl-1">
+
+      <div class="mt-1">
+        <div *ngIf="displayMatched">
+          <div class="badge-thyroo">
+            <span class="badge-thyroo-content">
+              <i class="fas fa-check-circle"></i>
+              Contact network
+            </span>
+          </div>
+          <div class="card badge-thyroo-card">
+            <p class="text-500 text-sm mt-3">
+              You both are interested in each other, so this is the right time to start talking and start a
+              business. If you have questions please feel free to read our articles for more information.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-1 mb-1">
+        <div class="card-body">
+          <h6 class="card-title">Accessing who viewed my profile</h6>
+          <p class="card-text text-sm text-muted text-500">
+            Did you know that can see who viewed your profile? Just click on the notifications tab so you will be able
+            to see who might be interested in you. Or simply click <a class="text-thyroo" [routerLink]="['/notifications']"
+              routerLinkActive="router-link-active">here</a> to navigate to the notifications section. You
+            can see the latest 10 users who saw your profile.
+          </p>
+        </div>
+      </div>
+      <app-latest-users></app-latest-users>
+      <app-help-links></app-help-links>
+    </div>
+  </div>
+</div>
+
+
+<app-full-screen-loader *ngIf="loader"></app-full-screen-loader>

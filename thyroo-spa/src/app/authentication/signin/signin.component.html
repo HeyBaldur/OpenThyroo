@@ -1,0 +1,73 @@
+<app-navigation></app-navigation>
+
+<form class="form-signin mt-5" [formGroup]="signInForm" (ngSubmit)="signInUser()">
+  <div class="text-center mb-4">
+    <img class="mb-4 img-logo" src="../../../assets/images/thryoo-auth.png" alt="Thyroo">
+    <h2>
+      Welcome back
+    </h2>
+    <label class="text-500">
+      <span>
+        Don't miss your next opportunity. Sign in to stay updated on your professional world.
+      </span>
+    </label>
+  </div>
+  <div class="form-group">
+
+    <div *ngIf="errorFlag" class="alert alert-danger alert-dismissible fade show text-sm text-500" role="alert">
+      <strong>Something went wrong!</strong>
+      It seems your email address and/or password are not related to our database, or maybe you
+      have signed up with a different provider, try to log in using Google.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <input type="email" class="form-control" id="emailAddress" formControlName="emailAddress" name="emailAddress"
+      [pattern]="emailPattern" placeholder="Enter email address">
+    <small class="text-danger"
+      *ngIf="signInForm.controls['emailAddress'].touched && signInForm.controls['emailAddress'].hasError('required')">
+      Add an email address
+    </small>
+    <small class="text-danger" *ngIf="signInForm.controls['emailAddress'].errors?.pattern">
+      Enter a valid email address
+    </small>
+  </div>
+  <div class="form-group">
+    <input type="password" class="form-control" id="password" formControlName="password" name="password"
+      placeholder="Password">
+    <small class="text-danger"
+      *ngIf="signInForm.controls['password'].touched && signInForm.controls['password'].hasError('required')">
+      Enter your password
+    </small>
+  </div>
+  <button [disabled]="!signInForm.valid" type="submit" class="btn btn-thyroo float-right">
+    <span class="mr-3 ml-3">Sign in</span>
+  </button>
+</form>
+
+<form class="form-signin">
+  <hr class="hr-text mt-5" data-content="or">
+  <div class="text-center mt-2">
+    <a (click)="signInWithGoogle()" class="btn btn-lg btn-thyroo btn-block text-white">
+      Continue with Google
+      <i class="fab fa-google"></i>
+    </a>
+  </div>
+
+  <div class="text-center">
+    <a class="text-thyroo" [routerLink]="['/auth/signup']" routerLinkActive="router-link-active">
+      <small>Create a new account</small>
+    </a><br>
+    <a class="text-thyroo" [routerLink]="['/auth/forgotPassword']" routerLinkActive="router-link-active">
+      <small>Forgot password?</small>
+    </a>
+  </div>
+
+  <p class="mt-5 mb-3 text-muted text-center">
+    <small>&copy; 2020 Thyroo app. All rights reserved.</small>
+    <app-help-links></app-help-links>
+  </p>
+</form>
+
+<app-full-screen-loader *ngIf="loader"></app-full-screen-loader>

@@ -1,0 +1,13 @@
+@import url('../assets/style.css');
+
+.emailCheck {
+  margin-left: 0.7em;
+}
+
+.email-sender-img {
+  border-radius: 50%;
+  height: 16px;
+  width: 16px;
+  border-color: #eee;
+  margin-left: 3px;
+}

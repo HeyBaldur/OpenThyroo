@@ -1,0 +1,131 @@
+<!-- Button trigger modal -->
+<div class="card">
+  <div class="card-footer">
+    <button type="button" class="btn btn-thyroo btn-sm" data-toggle="modal" data-target="#staticBackdrop">
+      <span class="ml-3 mr-3">
+        <small>
+          <b>
+            <i class="fas fa-search"></i>
+            Search users by keywords
+          </b>
+        </small>
+      </span>
+    </button>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">
+          <strong>Business roles</strong><br>
+          Search user by criteria
+        </h5>
+        <button #closebutton type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="formPreferences" (submit)="searchUsers()">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-4 pr-1">
+              <small class="form-text text-muted mb-1">Business types: <span class="text-danger">*</span></small>
+              <div class="form-check" *ngFor="let item of businessTypeId">
+                <input formControlName="businessTypeId" name="businessTypeId" id="business-{{item.id}}" class="form-check-input" type="radio" value="{{item.id}}" checked>
+                <label class="form-check-label" for="business-{{item.id}}">
+                  {{item.name}}
+                </label>
+              </div>
+              <small class="text-danger" *ngIf="
+                formPreferences.get('businessTypeId').touched &&
+                formPreferences.get('businessTypeId').hasError('required')">
+                <span>Required field</span>
+              </small>
+            </div>
+            <div class="col-md-4 pl-1 pr-1">
+              <small class="form-text text-muted mb-1">What user is looking for: <span
+                  class="text-danger">*</span></small>
+                  <div class="form-check" *ngFor="let item of profileTypeId">
+                    <input formControlName="profileTypeId" name="profileTypeId" id="profile-{{item.id}}" class="form-check-input" type="radio" value="{{item.id}}" checked>
+                    <label class="form-check-label" for="profile-{{item.id}}">
+                      {{item.name}}
+                    </label>
+                  </div>
+              <small class="text-danger" *ngIf="
+                formPreferences.get('profileTypeId').touched &&
+                formPreferences.get('profileTypeId').hasError('required')">
+                <span>Required field</span>
+              </small>
+            </div>
+            <div class="col-md-4 pl-1">
+              <small class="form-text text-muted mb-1">Business sub-profile: <span class="text-danger">*</span></small>
+              <div class="form-check" *ngFor="let item of profileSubTypeId">
+                <input formControlName="profileSubTypeId" name="profileSubTypeId" id="sub-profle-{{item.id}}" class="form-check-input" type="radio" value="{{item.id}}" checked>
+                <label class="form-check-label" for="sub-profle-{{item.id}}">
+                  {{item.name}}
+                </label>
+              </div>
+              <small class="text-danger" *ngIf="
+                formPreferences.get('profileSubTypeId').touched &&
+                formPreferences.get('profileSubTypeId').hasError('required')">
+                <span>Required field</span>
+              </small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <small class="form-text text-muted mb-1">City:</small>
+              <input autocomplete="off" (typeaheadNoResults)="typeaheadNoLocations($event)" formControlName="city"
+                name="city" [typeahead]="states" [typeaheadScrollable]="true" class="form-control form-control-sm"
+                placeholder="Type a location e.g. Houston">
+              <small class="text-danger mt-1 text-sm" *ngIf="locationsNoFound">
+                We have not found any result.
+              </small>
+
+            </div>
+            <div class="col-md-6 pl-1">
+              <small class="form-text text-muted mb-1">Title:</small>
+              <input autocomplete="off" [typeahead]="careers" [typeaheadScrollable]="true" (typeaheadNoResults)="typeaheadNoCareers($event)"
+                class="form-control-sm form-control" placeholder="Type career e.g. Software developer"
+                formControlName="title" name="title">
+                <small class="text-danger mt-1 text-sm" *ngIf="careersNoFound">
+                  We have not found any result.
+                </small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <p class="mt-2 text-sm text-100">
+                You can use the Thyroo <i class="fas fa-search"></i>
+                Search bar to look for people with similar interests, role models, and
+                Influencers to broaden your professional network and expertise.
+                Once you've found the person you're looking for, select the member's name to view his or her profile.
+                You can also send an InMatch to your 2nd and 3rd degree connections, connect with members, or follow
+                someone
+                by clicking the button listed within their profile information.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary btn-sm mr-auto" data-dismiss="modal">
+            <span class="ml-3 mr-3">
+              <small><b>Close</b></small>
+            </span>
+          </button>
+          <button [disabled]="!formPreferences.valid" type="submit" class="btn btn-outline-thyroo btn-sm">
+            <span class="ml-3 mr-3">
+              <small><b>
+                  <i class="fas fa-search"></i>
+                  Search users
+                </b></small>
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

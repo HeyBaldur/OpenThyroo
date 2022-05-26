@@ -1,0 +1,17 @@
+<input type="search" [(ngModel)]="filterer" class="form-control search-form" placeholder="Search contacts">
+<div *ngFor="let match of myMatchesList | myFilter: filterer">
+  <div class="chat_list" [ngClass]="{'active': match.businessProfile.userId == recipientId}">
+    <a (click)="validate(false)" [routerLink]="['/email/thread/', match.user.id]">
+      <div class="chat_people">
+        <div class="chat_img"> <img src="{{match.user.photoUrl}}" alt="sunil"> </div>
+        <div class="chat_ib">
+          <h5>{{match.businessProfile.knowAs}}</h5>
+          <p class="text-sm">
+            <span class="occupation-title">{{match.businessProfile.occupation}}</span><br>
+            <span class="text-100">{{match.businessProfile.city}}</span>
+          </p>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

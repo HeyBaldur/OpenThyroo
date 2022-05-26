@@ -1,0 +1,35 @@
+.card-widget {
+  border: 0;
+  position: relative;
+  background-color: #fafafa;
+}
+
+.widget-user-2 .widget-user-header {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  padding: 1rem;
+}
+
+.widget-user-2 .widget-user-username {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.widget-user-2 .widget-user-desc {
+  margin-top: 0;
+}
+
+.widget-user-2 .widget-user-username,
+.widget-user-2 .widget-user-desc {
+  margin-left: 75px;
+}
+
+.widget-user-2 .widget-user-image>img {
+  float: left;
+  height: 65px;
+  width: 65px;
+}
+
+:host ::ng-deep .article-info img {
+  width: 100% !important;
+}

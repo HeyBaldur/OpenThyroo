@@ -1,0 +1,19 @@
+<app-navigation></app-navigation>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="error-page align-items-center">
+        <div class="error-content">
+          <img class="img-error mb-2 mx-auto d-block" src="../../assets/images/gif/working.gif">
+          <h3 class="text-center"><i class="fas fa-exclamation-triangle text-danger"></i> Oops! Something went wrong.</h3>
+          <p class="text-center">
+            We will work on fixing this right away. We didn't expect a
+            problem with our servers. Meanwhile, you may return to 
+            <a class="text-thyroo" [routerLink]="['/home']" routerLinkActive="router-link-active">home page</a>
+            or try using the search form.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

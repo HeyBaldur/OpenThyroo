@@ -1,0 +1,90 @@
+<app-navigation></app-navigation>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 pr-1">
+      <app-email-menu></app-email-menu>
+    </div>
+    <div class="col-md-9 pl-1">
+      <div class="card card-primary card-outline">
+        <div class="card-header">
+          <h3 class="card-title text-thyroo">
+            <i class="fas fa-arrow-alt-circle-left"></i>
+            Outbox
+          </h3>
+          <div class="card-tools">
+            <div class="input-group input-group-sm">
+              <input type="search" class="form-control" placeholder="Search message by subject" [(ngModel)]="filterer">
+            </div>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <div class="mailbox-controls">
+            <button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
+            <div class="float-right">
+              Displaying {{emails.length}}
+              <div class="btn-group">
+                <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-left"></i></button>
+                <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-right"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive mailbox-messages">
+            <table class="table table-hover table-striped table-sm text-sm">
+              <tbody>
+                <tr *ngIf="emails.length === 0">
+                  <td class="no-emails-to-display">
+                    There are no messages to display
+                  </td>
+                </tr>
+                <tr *ngFor="let email of emails | InboxPipeFilter: filterer">
+                  <td *ngIf="email.favorite" class="mailbox-star"><a><i class="fas fa-star text-warning ml-2"></i></a></td>
+                  <td *ngIf="!email.favorite" class="mailbox-star"><a><i class="far fa-star ml-2"></i></a></td>
+                  <td><img class="email-sender-img" src="{{email.sender.photoUrl}}"></td>
+                  <td><img class="email-sender-img" src="{{email.recipient.photoUrl}}"></td>
+                  <td class="mailbox-name"><a [routerLink]="['/user/', email.recipientId]"
+                      routerLinkActive="router-link-active">{{email.recipient.firstName}}
+                      {{email.recipient.lastName}}</a></td>
+                  <td class="mailbox-subject">
+                    <b>{{email.subject | slice: 0:12}}</b> -
+                    <a [routerLink]="['/email/thread/', email.recipientId]"
+                      routerLinkActive="router-link-active"><b>Read entire email/thread</b></a>
+                  </td>
+                  <td class="mailbox-attachment"></td>
+                  <td class="mailbox-date">{{email.messageSent | timeAgo}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="d-flex">
+                <pagination class="mt-2 mr-2 ml-2" [boundaryLinks]="true" [totalItems]="pagination.totalItems"
+                  [itemsPerPage]="pagination.itemsPerPage" [(ngModel)]="pagination.currentPage"
+                  (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+                  lastText="&raquo;">
+                </pagination>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer p-0">
+          <div class="mailbox-controls">
+            <div class="float-right">
+              More info...
+              <div class="btn-group">
+                <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-left"></i></button>
+                <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-full-screen-loader *ngIf="loader"></app-full-screen-loader>

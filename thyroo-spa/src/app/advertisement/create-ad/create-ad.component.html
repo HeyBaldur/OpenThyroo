@@ -1,0 +1,254 @@
+<app-navigation></app-navigation>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mb-3 pr-1">
+      <form [formGroup]="adForm">
+        <div class="card">
+          <div class="card-body">
+            <h2>Create a free ad</h2>
+            <h5 class="card-title mt-3">
+              Object<br>
+              <small>Let's get started! Select the objective that best fits goals below. All fields are required</small>
+            </h5>
+
+            <div class="card-group text-100">
+              <div class="card">
+                <div class="card-body">
+                  <div class="form-check form-check-inline">
+                    <input type="text" formControlName="objective" name="objective" type="radio"
+                      class="form-check-input" value="Brand awareness">
+                    <label class="form-check-label" for="inlineRadio1">
+                      Brand awareness
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-body">
+                  <div class="form-check form-check-inline">
+                    <input type="text" formControlName="objective" name="objective" type="radio"
+                      class="form-check-input" value="Website visits">
+                    <label class="form-check-label" for="inlineRadio2">
+                      Website visits
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-body">
+                  <div class="form-check form-check-inline">
+                    <input type="text" formControlName="objective" name="objective" type="radio"
+                      class="form-check-input" value="Engagements">
+                    <label class="form-check-label" for="inlineRadio3">
+                      Engagements
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <small *ngIf="adForm.controls['objective'].touched && adForm.controls['objective'].hasError('required')"
+              class="text-danger">
+              Please select an object
+            </small>
+          </div>
+        </div>
+
+        <div class="card mt-1">
+          <div class="card-body">
+            <h5 class="card-title">
+              Permanent location<br>
+              <small class="text-muted">
+                People who permanenly live or work in the selected area
+                <i popover="We are working hard to get you more locations, our advertising system is only available for USA, Canada, Poland, and Costa Rica. We only allow one location per ad."
+                  triggers="mouseenter:mouseleave" class="fas fa-info-circle text-muted pointer"></i>
+              </small>
+            </h5>
+            <input type="text" autocomplete="off" formControlName="locationName" name="locationName"
+              [typeahead]="states" [typeaheadScrollable]="true" (typeaheadNoResults)="typeaheadNoLocations($event)"
+              class="form-control form-control-sm" placeholder="Type a location e.g. Houston">
+
+            <small
+              *ngIf="adForm.controls['locationName'].touched && adForm.controls['locationName'].hasError('required')"
+              class="text-danger">
+              Please add a valid location
+            </small>
+
+            <p class="text-danger mt-1 text-sm" *ngIf="noLocations">
+              We are working hard to get you more locations, our advertising system is only available for USA, Canada,
+              Poland, and Costa Rica. <b>We only allow one location per ad</b>.
+            </p>
+          </div>
+        </div>
+        <div class="card mt-1">
+          <div class="card-body">
+            <h5 class="card-title">
+              Audience<br>
+              <small class="text-muted">
+                Target members by the Thyroo Groups they belong to, their field of study, the skills they self identify,
+                and more.
+              </small>
+            </h5>
+            <input type="text" autocomplete="off" formControlName="audience" name="audience"
+            [typeaheadScrollable]="true" [typeahead]="careers" (typeaheadNoResults)="typeaheadNoCareers($event)"
+              class="form-control form-control-sm" placeholder="Type a location e.g. Software developer">
+
+            <small *ngIf="adForm.controls['audience'].touched && adForm.controls['audience'].hasError('required')"
+              class="text-danger">
+              Please add an audience
+            </small>
+            <small class="form-text text-muted">
+              Select your campaign
+            </small>
+            <select formControlName="adsCampaignId" name="adsCampaignId" class="form-control form-control-sm mt-1">
+              <option class="text-muted" value="{{campaign.id}}" *ngFor="let campaign of myCampaigns">
+                {{campaign.adName}} | End: {{campaign.ends | date}}
+              </option>
+            </select>
+            <small
+              *ngIf="adForm.controls['adsCampaignId'].touched && adForm.controls['adsCampaignId'].hasError('required')"
+              class="text-danger">
+              Please select a campaign
+            </small>
+            <p class="text-danger mt-1 text-sm" *ngIf="noCareers">
+              Please add enter a valid career, you can enter any other character, unfortunately, we cannot guarantee you
+              the results will be the expected.
+            </p>
+          </div>
+        </div>
+        <div class="card mt-1">
+          <div class="card-body">
+            <div class="form-group">
+              <h5>Ad title</h5>
+              <input type="text" formControlName="title" name="title" class="form-control form-control-sm"
+                placeholder="Ad title" required>
+              <small *ngIf="adForm.controls['title'].touched && adForm.controls['title'].hasError('required')"
+                class="text-danger">
+                Please add title to your ad
+              </small>
+              <input type="text" formControlName="sponsoredBy" name="sponsoredBy"
+                class="form-control form-control-sm mt-1" placeholder="Enter your name or company name">
+              <small
+                *ngIf="adForm.controls['sponsoredBy'].touched && adForm.controls['sponsoredBy'].hasError('required')"
+                class="text-danger">
+                Please enter a name or company name
+              </small>
+              <small id="emailHelp" class="form-text text-muted">
+                Target your ideal customer based on traits like their job title, company name, industry, and by
+                professional or personal interests
+              </small>
+            </div>
+            <div class="form-group">
+              <h5>Ad brief description <small>(Up to 150 characters)</small></h5>
+              <input type="text" formControlName="description" name="description" maxlength="150"
+                class="form-control form-control-sm mt-1" placeholder="Ad description">
+              <small
+                *ngIf="adForm.controls['description'].touched && adForm.controls['description'].hasError('required')"
+                class="text-danger">
+                Please add a brief description
+              </small>
+              <small id="emailHelp" class="form-text text-muted">
+                Reach people you already know with website, contact, and account targeting
+              </small>
+            </div>
+            <div class="form-group">
+              <h5>URL <small>Link</small></h5>
+              <input type="text" formControlName="url" name="url" class="form-control form-control-sm mt-1"
+                placeholder="Link or url">
+              <small *ngIf="adForm.controls['url'].touched && adForm.controls['url'].hasError('required')"
+                class="text-danger">
+                Please add an url or link
+              </small>
+              <small id="emailHelp" class="form-text text-muted">
+                Reach more professionals, more frequently and boost your campaign performance across all your objectives
+                by scaling your message on our network.
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mt-1">
+          <div class="card-body">
+            <h5 class="card-title">
+              Payment<br>
+            </h5>
+            <p class="text-muted text-sm">
+              You can add, edit, or delete payment information from the Manage Payment Methods section of the Premium
+              Subscriptions Setting page.
+              Do you have questions about your subscription, payment method, or viewing and printing a receipt?
+              Familiarize yourself with how the Thyroo billing and payments system works for our paid products and
+              features including Premium Accounts, Sales Solutions, Marketing Solutions, and more.
+            </p>
+          </div>
+        </div>
+        <div class="card mt-1">
+          <div class="card-body">
+            <a class="btn btn-outline-thyroo btn-sm mt-3" [routerLink]="['/business/campaignmanager']"
+              routerLinkActive="router-link-active">
+              <small class="ml-3 mr-3">
+                <b>Cancel ad</b>
+              </small>
+            </a>
+            <button [disabled]="adForm.invalid" (click)="submitAd()"
+              popover="Your ad cannot be changed once you save. Do you want to save?" popoverTitle="Confirm and save"
+              triggers="mouseenter:mouseleave" type="submit" class="btn btn-thyroo btn-sm mt-3 float-right">
+              <small class="ml-3 mr-3">
+                <b>Publish ad</b>
+              </small>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-4 pl-1">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Forecasted results</h5>
+          <p class="card-text text-sm text-500">
+            The Forecasted Results window appears on the right side of the page when you create a new campaign in
+            Campaign Manager. During creation of a new campaign, the Forecasted Results window generates expected
+            campaign performance details in real time as you select various campaign details like including target
+            audience size, ad type, budget, and more.
+          </p>
+        </div>
+      </div>
+      <ul class="list-group mb-3 mt-1">
+        <!-- <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Total impressions</h6>
+            <small class="text-muted">Number of views</small>
+          </div>
+          <span class="text-muted">1000 - 5000</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Total clicks</h6>
+            <small class="text-muted">Number of clicks your link</small>
+          </div>
+          <span class="text-muted">350-1250</span>
+        </li> -->
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Total spent</h6>
+            <small class="text-muted">Total amount</small>
+          </div>
+          <span class="text-muted">$47.50</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between bg-light">
+          <div class="text-success">
+            <h6 class="my-0">Promo account</h6>
+            <small>Free ad</small>
+          </div>
+          <span class="text-success">-$47.50</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <span>Total (USD)</span>
+          <strong>$0.00</strong>
+        </li>
+      </ul>
+      <app-help-links></app-help-links>
+    </div>
+  </div>
+</div>
+
+<app-full-screen-loader *ngIf="loader"></app-full-screen-loader>

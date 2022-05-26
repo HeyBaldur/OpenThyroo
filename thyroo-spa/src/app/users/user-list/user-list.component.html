@@ -1,0 +1,75 @@
+<app-navigation></app-navigation>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 pr-1">
+      <app-progress-bar *ngIf="loader"></app-progress-bar>
+
+      <div class="card mt-2">
+        <div class="card-body">
+          <form>
+            <div class="input-group">
+              <input type="text" class="form-control form-control-sm" placeholder="Search by name or email">
+              <div class="input-group-append">
+                <button class="btn btn-outline-danger btn-sm" type="button" id="button-addon2">
+                  Search users
+                </button>
+              </div>
+            </div>
+            <small class="form-text text-muted">
+              If you are looking for a business user, please
+              click <a [routerLink]="['/user/b/search']">
+                <i class="fas fa-search"></i>
+                here
+              </a>
+            </small>
+          </form>
+        </div>
+      </div>
+
+      <div class="card mt-2">
+        <div class="card-body shadow-sm">
+          <div class="row">
+            <div class="col-md-4 pr-1" *ngFor="let user of users">
+              <div class="wrapper border">
+                <div class="top-icons">
+                  <i class="fas fa-long-arrow-alt-left"></i>
+                  <i class="fas fa-ellipsis-v"></i>
+                  <i class="far fa-heart"></i>
+                </div>
+                <div class="profile">
+                  <a [routerLink]="['/user/', user.userId]">
+                    <img src="{{user.photoUrl}}" class="thumbnail border">
+                  </a>
+                  <h6 class="name">
+                    <a [routerLink]="['/user/', user.userId]" routerLinkActive="router-link-active">{{user.knowAs}}</a>
+                  </h6>
+                  <p class="title">{{user.occupation}}</p>
+                  <!-- <p class="description">
+                    <span [innerHTML]="user.summary | slice:0:75"></span>
+                  </p> -->
+                  <a [routerLink]="['/user/', user.userId]" routerLinkActive="router-link-active"
+                    class="btn btn-outline-danger btn-block btn-sm">
+                    <strong>Contact with me</strong>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 pl-1">
+      <div class="card mt-2">
+        <div class="card-body">
+          <h5 class="card-title">Business preferences</h5>
+          <p class="card-text text-muted p-sm-12">
+            Business preferences are important to let other users know about your profile and match each other.
+            We recommend you to choose 3 business preferences maximum, creating many business preferences might let
+            users think your profile might not be real. Good luck!
+          </p>
+          <a [routerLink]="['/profile']" class="btn btn-outline-secondary btn-sm btn-block">My profile</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

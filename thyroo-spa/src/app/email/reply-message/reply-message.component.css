@@ -1,0 +1,10 @@
+:host ::ng-deep .ql-container .ql-editor {
+    max-height: 100px !important;
+    height: 100px !important;
+}
+
+:host ::ng-deep .ql-toolbar {
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+  }

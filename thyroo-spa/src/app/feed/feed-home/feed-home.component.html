@@ -1,0 +1,188 @@
+<app-navigation></app-navigation>
+<p class="ad-block-detected" *ngIf="adBlocked">
+  Thyroo’s advertising tools may not work properly when an ad blocker is enabled in your web browser. Please turn off
+  the ad blocker or add linkedin.com as an exception so that you do not have issues creating ads. You will need to
+  refresh the page after making these changes. If you continue to experience issues or are not using an ad blocker,
+  please contact us if you are having problems with our advertising tools.
+</p>
+
+
+<div class="container">
+  <div class="row mt-1">
+    <div class="col-md-3 pr-1">
+      <app-categories-block></app-categories-block>
+    </div>
+    <div class="col-md-6 pl-1 pr-1">
+      <p class="text-500 text-sm text-center">
+        If you find Thyroo valuable and useful, please buy us a beer 🍻 to keep working hard.
+      </p>
+      <app-add-post></app-add-post>
+      <hr>
+
+      <!--Profile validaor and servier error-->
+      <app-profile-validator></app-profile-validator>
+      <app-server-error *ngIf="serverErrorFlag"></app-server-error>
+      <!--Profile validaor and servier error-->
+
+      <app-advertising></app-advertising>
+      <app-feed-skeleton *ngIf="skeleton"></app-feed-skeleton>
+
+      <!-- <cdk-virtual-scroll-viewport  style="height: 500px" itemSize="90" >
+        <ng-container *cdkVirtualFor="let item of postList; let i = index">
+        
+        </ng-container>
+      </cdk-virtual-scroll-viewport> -->
+
+      <div *ngFor="let item of postList; let i = index">
+        <app-advertising class="mb-1" *ngIf="i == 5"></app-advertising>
+        <div class="card mb-2">
+          <div class="card is-post post-list">
+            <div class="content-wrap">
+              <div class="card-heading">
+                <div class="dropdown is-spaced float-right">
+                  <div>
+                    <div class="button">
+                      <span *ngIf="item.userId === currentUser.id" title="Delete post">
+                        <a class="pointer text-muted" (click)="removePostConfim(item.id)">
+                          <strong>
+                            <i class="far fa-trash-alt"></i>
+                          </strong>
+                        </a>
+                      </span>
+                      <span class="ml-1" placement="left" title="Open post">
+                        <a class="text-thyroo" [routerLink]="['/feed/single/', item.id]">
+                          <i class="fas fa-external-link-square-alt"></i>
+                        </a>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="user-block">
+                  <div class="image">
+                    <a (mouseover)="showBadge(true, item.id)" (mouseout)="hideBadge(false, item.id)"
+                      [routerLink]="['/user/', item.user.id]">
+                      <img src="{{item.user.photoUrl}}" data-user-popover="1" class="border"
+                        alt="{{item.user.firstName}}">
+                    </a>
+                  </div>
+                  <div class="user-info">
+                    <div *ngIf="displayUserBadge && badgeItemId === item.id" class="card user-badge-info">
+                      <div class="card-body">
+                        <div class="image">
+                          <a [routerLink]="['/user/', item.user.id]">
+                            <img src="{{item.user.photoUrl}}" data-user-popover="1" class="border mr-3"
+                              alt="{{item.user.firstName}}">
+                          </a>
+                        </div>
+                        <a [routerLink]="['/user/', item.user.id]">
+                          {{item.user.providerFullName}} <app-verified-badge-sm *ngIf="item.user.verifiedAccount">
+                          </app-verified-badge-sm><br>
+                          <strong *ngIf="item.user.verifiedAccount">Trusted and verified user</strong>
+                        </a>
+                        <span class="text-sm text-muted">
+                          Thyroo member since {{item.user.enrollmentDate | timeAgo}}
+                        </span>
+
+                        <div class="col-md-12 mt-2">
+                          <p class="text-sm">
+                            <strong>
+                              <i class="fas fa-map-marker-alt"></i> {{item.user.location}}<br>
+                              <i class="fas fa-briefcase"></i> {{item.user.occupation}}
+                            </strong>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <a [routerLink]="['/user/', item.user.id]">
+                      {{item.user.providerFullName}} <app-verified-badge-sm *ngIf="item.user.verifiedAccount">
+                      </app-verified-badge-sm><br>
+                      <strong *ngIf="item.user.verifiedAccount">Trusted and verified user</strong>
+                    </a>
+                    <span class="time">
+                      Shared publicly - {{item.created | timeAgo}}
+                    </span>
+                  </div>
+                </div>
+
+                <app-deletepostconfirmation [deleteConfirmation]="deleteConfirmation" [userId]="item.userId"
+                  [currentUserId]="currentUser.id" [postItemId]="postItemId" [itemId]="item.id"
+                  (visibleChange)="cancelDeleting($event)" (postToRemove)="removePost($event)">
+                </app-deletepostconfirmation>
+              </div>
+              <div class="card-body">
+                <div class="post-text">
+                  <h5>
+                    <a class="post-title" [routerLink]="['/feed/single/', item.id]">
+                      <strong>{{item.title}}</strong>
+                    </a>
+                  </h5>
+                  <!-- <div [innerHTML]="item.description"></div> -->
+                  <!-- <div *ngIf="item.url" class="mb-2">
+                    <div [innerHTML]="embedService.embed(item.url.toString())"></div>
+                    <a class="text-muted" href="{{item.url}}" target="_blank">
+                      <small>Open in external tab</small>
+                    </a>
+                  </div> -->
+                  <a [routerLink]="['/feed/topic/', item.category.id]" class="text-muted pointer mb-2">
+                    <div class="chip mb-1">
+                      <img src="{{item.category.photoUrl}}" alt="{{item.category.name}}" width="96" height="96"
+                        class="border">
+                      {{item.category.name}}
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="card-footer">
+                <app-social-options [itemId]="item.id" [liked]="item.likeDet" [likeCounter]="item.likes"
+                  [commentsCounter]="item.comments?.length" (postId)="like($event)" (postId)="unLike($event)">
+                </app-social-options>
+              </div>
+            </div>
+
+            <!-- <div class="comments-wrap is-hidden">
+              <div class="comments-heading">
+                <h4>
+                  Comments
+                  <small>({{item.comments?.length}})</small>
+                </h4>
+              </div>
+              <div class="comments-body" *ngIf="item.comments?.length !== 0">
+                <div class="card-footer card-comments">
+                  <app-commentsfeed [commentsArray]="item.comments" [currentUserId]="currentUser.id"
+                    [deleteConfirmation]="delCommentFlag" (postToRemove)="removeComment($event, item.id)">
+                  </app-commentsfeed>
+                </div>
+              </div>
+              <div class="card-footer">
+                <form *ngIf="currentUser.photoUrl" [formGroup]="commentForm"
+                  (keydown)="addComment(item.id, item.userId, $event)">
+                  <img class="img-fluid img-circle img-sm border img-comments" src="{{currentUser.photoUrl}}"
+                    alt="{{currentUser.firstName}}">
+                  <div class="img-push">
+                    <textarea rows="1" maxlength="400" type="text" formControlName="description" id="description" name="description"
+                      class="form-control form-control-sm fcc" placeholder="Press enter to post comment"></textarea>
+                  </div>
+                </form>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center align-items-center text-center">
+        <button class="btn btn-sm btn-outline-dark mb-3 btn-rounded mt-2 align-self-center" (click)="loadMore()">
+          <small class="mr-3 ml-3">
+            <span>{{loadMoreMessage}}</span>
+          </small>
+        </button>
+      </div>
+
+    </div>
+    <div class="col-md-3 pl-1">
+      <app-users-block></app-users-block>
+    </div>
+  </div>
+</div>
+
+<app-full-screen-loader *ngIf="loader"></app-full-screen-loader>
+<app-scroll-top></app-scroll-top>

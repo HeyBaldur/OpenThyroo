@@ -1,0 +1,19 @@
+.dropdown-item.active, .dropdown-item:active {
+    background-color: #9c081b !important;
+}
+
+.dropdown-item.active {
+    background-color: #9c081b !important;
+}
+
+.dropdown-item:active {
+    background-color: #9c081b !important;
+}
+
+.payment-methods {
+    width: 200px;
+}
+
+select {
+    border-radius: 30px;
+}

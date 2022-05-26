@@ -1,0 +1,119 @@
+<!-- Button trigger modal -->
+<div class="card mt-1">
+  <div class="card-footer">
+    <button type="button" class="btn btn-thyroo btn-sm" data-toggle="modal" data-target="#staticBackdrop">
+      <span class="ml-3 mr-3">
+        <small>
+          <b>
+            <i class="fas fa-briefcase"></i>
+            Add a business interst group
+          </b>
+        </small>
+      </span>
+    </button>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">
+          <strong>Business roles</strong><br>
+          Add business preferences
+        </h5>
+        <button #closebutton type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="formPreferences" (submit)="addPreferences()">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12" *ngIf="businessProfileFlag">
+              <div class="alert alert-danger alert-dismissible fade show text-100" role="alert">
+                <strong>Oops! something went wrong.</strong>
+                {{businessProfileMessage}}. Please add one <a class="text-thyroo" target="_blank" [routerLink]="['/profile']">here</a>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <p class="p-sm-12 text-muted text-100">
+                Business preferences are important to let other users know about your profile and match each other. 
+                We recommend you to choose 3 business preferences maximum, creating many business preferences might let 
+                users think your profile might not be real. Good luck!
+              </p>
+            </div>
+            <div class="col-md-4 pr-1">
+              <small class="form-text text-muted mb-1">My business industry/idea: <span class="text-danger">*</span></small>
+              <!-- <select class="form-control form-control-sm" formControlName="businessOfInterestId"
+                name="businessOfInterestId">
+                <option *ngFor="let item of businessTypes" value="{{item.id}}">{{item.name}}</option>
+              </select> -->
+              <div class="form-check" *ngFor="let item of businessTypes" required>
+                <input formControlName="businessOfInterestId" name="businessOfInterestId" class="form-check-input" type="radio" value="{{item.id}}" checked required>
+                <label class="form-check-label" for="exampleRadios1">
+                  {{item.name}}
+                </label>
+              </div>
+              <small class="text-danger" *ngIf="
+                formPreferences.get('businessOfInterestId').touched &&
+                formPreferences.get('businessOfInterestId').hasError('required')">
+                <strong>Required field</strong>
+              </small>
+            </div>
+            <div class="col-md-4 pl-1 pr-1">
+              <small class="form-text text-muted mb-1">I'm looking for: <span class="text-danger">*</span></small>
+              <!-- <select class="form-control form-control-sm" formControlName="profileTypesId" name="profileTypesId">
+                <option *ngFor="let item of profileTypes" value="{{item.id}}">{{item.name}}</option>
+              </select> -->
+              <div class="form-check" *ngFor="let item of profileTypes">
+                <input formControlName="profileTypesId" name="profileTypesId" class="form-check-input" type="radio" value="{{item.id}}" checked required>
+                <label class="form-check-label" for="exampleRadios1">
+                  {{item.name}}
+                </label>
+              </div>
+              <small class="text-danger" *ngIf="
+                formPreferences.get('profileTypesId').touched &&
+                formPreferences.get('profileTypesId').hasError('required')">
+                <strong>Required field</strong>
+              </small>
+            </div>
+            <div class="col-md-4 pl-1">
+              <small class="form-text text-muted mb-1">My business type: <span class="text-danger">*</span></small>
+              <!-- <select class="form-control form-control-sm" formControlName="profileSubTypesId" name="profileSubTypesId">
+                <option *ngFor="let item of profileSubTypes" value="{{item.id}}">{{item.name}}</option>
+              </select> -->
+              <div class="form-check" *ngFor="let item of profileSubTypes">
+                <input formControlName="profileSubTypesId" name="profileSubTypesId" class="form-check-input" type="radio" value="{{item.id}}" checked required>
+                <label class="form-check-label" for="exampleRadios1">
+                  {{item.name}}
+                </label>
+              </div>
+              <small class="text-danger" *ngIf="
+                formPreferences.get('profileSubTypesId').touched &&
+                formPreferences.get('profileSubTypesId').hasError('required')">
+                <strong>Required field</strong>
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary btn-sm mr-auto" data-dismiss="modal">
+            <span class="ml-3 mr-3">
+              <small><b>Close</b></small>
+            </span>
+          </button>
+          <button [disabled]="!formPreferences.valid" type="submit" class="btn btn-outline-thyroo btn-sm">
+            <span class="ml-3 mr-3">
+              <small><b>Save changes</b></small>
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="card" *ngIf="profile">
+  <div class="card-body">
+    <div class="avatar-flip">
+      <img src="{{profile.photoUrl}}" height="150" width="150">
+    </div>
+    <h2 class="text-center">{{profile.knowAs}}</h2>
+    <h5 class="text-center occupation-title">
+      {{profile.occupation}}<br>
+      <small class="text-muted">{{profile.city}}</small>
+    </h5>
+    <div class="row mt-3">
+      <div class="col-md-6 pr-1">
+        <a *ngIf="!currentUserFlag" [routerLink]="['/email/thread/', profile.userId]" routerLinkActive="router-link-active"  class="btn btn-thyroo btn-sm btn-block">
+          <small class="ml-3 mr-3">
+            <strong>
+              Message
+            </strong>
+          </small>
+        </a>
+      </div>
+      <div class="col-md-6 pl-1">
+        <a [routerLink]="['/user', profile.userId]" routerLinkActive="router-link-active"  class="btn btn-thyroo btn-sm btn-block">
+          <small class="ml-3 mr-3">
+            <strong>
+              Profile
+            </strong>
+          </small>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<app-aside-skeleton-loader *ngIf="loader"></app-aside-skeleton-loader>

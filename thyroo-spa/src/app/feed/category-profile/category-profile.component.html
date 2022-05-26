@@ -1,0 +1,22 @@
+<div class="card card-widget widget-user mb-2">
+  <div class="widget-user-header text-white"
+  [ngStyle]="{ 'background-image': 'url(' + categoryInfo?.bannerPhoto + ')'}">
+  </div>
+  <div class="widget-user-image">
+    <img class="img-circle" src="{{categoryInfo?.photoUrl}}" alt="{{categoryInfo?.name}}">
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="description-block">
+          <h6 class="description-header mb-0">
+            {{categoryInfo?.name}}
+          </h6>
+          <p class="description-text text-sm text-muted mt-1">
+            {{categoryInfo?.description}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="p-sm-12 text-center mt-2 text-muted">
+  <a class="text-muted" [routerLink]="['/about']"><span>About</span></a>
+  · <a class="text-muted" [routerLink]="['/legal/privacy-policy']"
+    routerLinkActive="router-link-active"><span>Policy</span></a>
+  <!-- · <a><span>About the developer</span></a> -->
+  · <a class="text-muted" [routerLink]="['/help/faq']"><span>Help center</span></a>
+  · <a class="text-muted" href="https://www.facebook.com/ThyrooApp/" target="_blank"><span>Facebook</span></a>
+  · <a class="text-muted" href="https://twitter.com/ThyrooApp" target="_blank"><span>Twitter</span></a>
+  · <a class="text-muted" [routerLink]="['/business']"><span>Advertisement</span></a>
+  · <a href="" class="pointer text-muted" data-toggle="modal" data-target="#verifiedAccounts"><span>Verified accounts</span></a>
+  · <a><span>V1.1.1-a.1</span></a>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="verifiedAccounts" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Verified account FAQs</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-left text-sm text-500">
+          The blue and gold verified badge <app-verified-badge-sm></app-verified-badge-sm>, <app-verified-badge-gold-sm>
+          </app-verified-badge-gold-sm> on Thyroo lets people know that an
+          account is authentic or premium (Gold member).
+        </p>
+        <h4 class="text-left text-100">How to verify my account</h4>
+        <ul class="text-left text-sm text-500">
+          <li>
+            Verifying your account will feel safe all users by making sure your account is real and you are active in
+            Thyroo. To verify your account we recommend you regularly create new posts, add new articles, and have a
+            minimum of interactions with such. <b>Your verified account badge will be displayed automatically.</b>
+          </li>
+          <li>
+            Thyroo team is working hard to give to all our users a better experience in the platform, so we are
+            currently working on the gold badge.
+          </li>
+          <li>
+            The gold badge will let people know that an account is a premium, however, we don't offer gold membership
+            yet we ask you kindly to be patient with this. If you need to know more about us. Please click on 
+            <a class="text-thyroo" target="_blank" [routerLink]="['/about']" routerLinkActive="router-link-active">about us</a> to know more.
+          </li> 
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-outline-dark btn-rounded" data-dismiss="modal">
+          <small class="ml-3 mr-3 text-500">
+            Close
+          </small>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

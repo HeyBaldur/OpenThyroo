@@ -1,0 +1,147 @@
+<app-server-error *ngIf="serverErrorFlag"></app-server-error>
+
+<div class="card mt-1" *ngIf="!errorMessage && (profile !== undefined)">
+  <div class="card-footer">
+    <app-add-business-profile class="mr-1" [updateProfile]="profile.userId" [isUpdate]="true"
+      (businessProfile)="updateBusinessProfile($event)"></app-add-business-profile>
+    <a [routerLink]="['/user/', profile.userId]" class="btn btn-outline-thyroo btn-sm float-right">
+      <small class="ml-3 mr-3">
+        <b>View public profile</b>
+      </small>
+    </a>
+    <a popover="View all your posts/activity" triggers="mouseenter:mouseleave"
+      [routerLink]="['/user/recent-activity/', profile.userId]" class="btn btn-outline-dark btn-sm float-right mr-1">
+      <i class="fab fa-creative-commons-share"></i>
+    </a>
+  </div>
+</div>
+
+<div class="mt-1">
+  <div *ngIf="errorMessage" class="alert alert-secondary alert-dismissible fade show" role="alert">
+    <h5 class="text-100">Add business profile</h5>
+    <p class="text-100 text-sm">
+      A business profile is extremely important for Thyroo users because this is a presentation letter of yourself,
+      all users, business people, recruiters and more will check your business profile to see who you are,
+      we strongly recommend adding all the information that you can to improve the business possibilities with others.
+      We wish you good luck & business!
+    </p>
+    <hr>
+    <app-add-business-profile (businessProfile)="addBusinessProfile($event)"></app-add-business-profile>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+
+<div *ngIf="!errorMessage && (profile !== undefined)">
+  <div class="container">
+    <div class="row">
+      <div class="card">
+        <div class="card-body">
+          <div class="col-ms-12" *ngIf="changesApplied">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              Your changes were applied
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="cap">
+            <h4 class="occupation-title">
+              {{profile.occupation}} <span class="text-100">in {{profile.companyName}}</span><br>
+              <small>
+                <p>{{profile.city}}</p>
+              </small>
+            </h4>
+          </div>
+
+          <div class="cap">
+            <h6>Summary:</h6>
+            <p class="text-muted" [innerHTML]="profile.summary"></p>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="cap">
+                <h6>Know as:</h6>
+                <p class="text-muted">{{profile.knowAs}}</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="cap">
+                <h6>Currently active:</h6>
+                <p class="text-muted">
+                  <span *ngIf="profile.currentlyActive">
+                    Yes
+                    <i class="far fa-check-circle text-success"></i>
+                  </span>
+                  <span *ngIf="!profile.currentlyActive">
+                    No
+                    <i class="far fa-check-circle"></i>
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="cap" *ngIf="profile.website">
+            <h6>Website:</h6>
+            <p class="text-muted">
+              <a class="text-500 text-thyroo" target="_blank" href="{{profile.website}}">
+                Visit website
+              </a>
+            </p>
+          </div>
+
+          <div class="cap">
+            <h6>Accomplishments:</h6>
+            <p class="text-muted">{{profile.accomplishments}}</p>
+          </div>
+
+          <div class="cap">
+            <h6>Business of Interest:</h6>
+            <p class="p-sm-12"></p>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="cap">
+                <h6>
+                  Email Contact:
+                  <i *ngIf="!profile.emailContactHidden" class="fas fa-eye text-muted"></i>
+                  <i *ngIf="profile.emailContactHidden" class="fas fa-eye-slash text-muted"></i>
+                </h6>
+                <p class="p-sm-12">
+                  <strong>
+                    {{profile.emailContact}}
+                  </strong>
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="cap">
+                <h6>
+                  Phone contact:
+                  <i *ngIf="!profile.phoneContactVisibleHidden" class="fas fa-eye text-muted"></i>
+                  <i *ngIf="profile.phoneContactVisibleHidden" class="fas fa-eye-slash text-muted"></i>
+                </h6>
+                <p class="p-sm-12">
+                  <strong>{{profile.phoneContact}}</strong>
+                </p>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="cap">
+                <h6>Skill set description:</h6>
+                <p class="text-muted">{{profile.skillSet}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-full-screen-loader *ngIf="loader"></app-full-screen-loader>

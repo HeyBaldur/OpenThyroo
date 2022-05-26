@@ -1,0 +1,179 @@
+<app-navigation></app-navigation>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 mt-1 pr-1">
+      <div class="card-group">
+        <div class="card">
+          <div class="card-body">
+            <h5>
+              Campaigns<br>
+              <small class="text-sm text-100">
+                <span>{{campaigns?.length}}</span> Campaigns
+              </small>
+            </h5>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5>
+              Ads<br>
+              <small class="text-sm text-100">
+                <span>{{myAds?.length}}</span> Ads
+              </small>
+            </h5>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5>
+              Help center<br>
+              <small class="text-sm text-100">
+                Get help to create effective ads
+              </small>
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card-footer">
+            <small class="text-muted">
+              <a [routerLink]="['/business/campaignmanager/create']" class="btn btn-thyroo btn-sm"
+                popover="To create an ad you need to create a campaign strategy, so no worries, it won't take more than 5 minutes."
+                triggers="mouseenter:mouseleave">
+                <small class="ml-3 mr-3">
+                  <b>Create campaign</b>
+                </small>
+              </a>
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <h5>
+                My campaigns
+                <span *ngIf="campaigns?.length === 0" class="text-100">
+                  You don't have campaigns yet
+                </span>
+              </h5>
+              <table class="table table-sm table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Campaign</th>
+                    <th scope="col">Owner</th>
+                    <!-- <th scope="col">Average CPM</th> -->
+                    <th scope="col">Clicks</th>
+                    <th scope="col">Spent</th>
+                    <th scope="col">Key Results</th>
+                    <th scope="col">Starts</th>
+                    <!-- <th scope="col">Ends</th> -->
+                    <th scope="col">Ads</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="text-sm">
+                  <tr *ngFor="let item of campaigns">
+                    <td>{{item.adName}}</td>
+                    <td>{{item.user.firstName}} <img class="img-admin" src="{{item.user.photoUrl}}"></td>
+                    <!-- <td>{{item.averageCPM}}</td> -->
+                    <td>{{item.clicks}}</td>
+                    <td>{{item.spent | currency}}</td>
+                    <td>{{item.keyResults}}</td>
+                    <td>{{item.starts | date}}</td>
+                    <!-- <td>
+                      {{item.ends | date}}
+                    </td> -->
+                    <td><span>Active <i class="fas fa-check-circle text-success"></i></span></td>
+                    <td>
+                      <a [routerLink]="['/business/campaignmanager/create/ad']" class="text-thyroo">
+                        <strong>Create ad</strong>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12 mt-1">
+          <div class="card">
+            <div class="card-body">
+              <h5>
+                My ads information
+                <span *ngIf="myAds?.length === 0" class="text-100">
+                  You don't have ads yet
+                </span>
+              </h5>
+              <table class="table table-sm table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Objective</th>
+                    <th scope="col">Sponsored By</th>
+                    <th scope="col">Audience</th>
+                    <th scope="col">Location target</th>
+                    <th scope="col">Clicks</th>
+                    <!-- <th scope="col">Engagements</th> -->
+                    <th scope="col">Impressions</th>
+                    <!-- <th scope="col">Ends</th> -->
+                    <th scope="col">Amount</th>
+                    <th scope="col">Campaign</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="text-sm">
+                  <tr *ngFor="let ad of myAds">
+                    <td>
+                      {{ad.objective}}
+                    </td>
+                    <td>{{ad.sponsoredBy}}</td>
+                    <td>{{ad.audience}}</td>
+                    <td>{{ad.locationName}}</td>
+                    <td>{{ad.clicks}}</td>
+                    <!-- <td>{{ad.engagements}}</td> -->
+                    <td>{{ad.impressions}} views</td>
+                    <!-- <td>{{ad.ends | date}}</td> -->
+                    <td>{{ad.amount | currency}}</td>
+                    <td>{{ad.adsCampaign.adName}}</td>
+                    <td>
+                      <span *ngIf="ad.active" popover="Your add is active and running correclty"
+                        triggers="mouseenter:mouseleave">Active <i class="fas fa-check-circle text-success"></i></span>
+                      <span class="text-muted" *ngIf="!ad.active"
+                        popover="Your ad is on sleeping mode. Ads cannot be deleted or updated. For more information please visit our help center to know more."
+                        triggers="mouseenter:mouseleave">Stopped <i class="fas fa-minus-circle"></i></span>
+                      <span>
+                        <i class="fas fa-info-circle ml-1 text-muted" popoverTitle="{{ad.title}} | {{ad.sponsoredBy}}"
+                          popover="{{ad.description}} - {{ad.url}}" triggers="mouseenter:mouseleave"></i>
+                      </span>
+                      <a popover="Sleep your ad" triggers="mouseenter:mouseleave" class="ml-1 text-danger pointer"
+                        (click)="shutAd(ad.id)">
+                        <i class="fas fa-minus-circle"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mt-1 pl-1">
+      <div class="card">
+        <div class="card-body">
+          <h6>Why I can't delete my ad</h6>
+          <p class="text-sm text-500 text-muted">
+            For security reasons ads cannot be deleted or updated, however, you can turn off your ad. By turning off
+            your ad it will not be available in the ads list on the different modules where they regularly appear.
+          </p>
+        </div>
+      </div>
+      <app-help-links></app-help-links>
+    </div>
+  </div>
+</div>
+
+<app-full-screen-loader *ngIf="loader"></app-full-screen-loader>

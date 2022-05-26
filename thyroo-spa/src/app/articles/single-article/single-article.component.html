@@ -1,0 +1,60 @@
+<app-navigation></app-navigation>
+<div class="container">
+  <div *ngIf="article === null">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <img src="https://img.icons8.com/clouds/100/000000/broken-link.png"/>
+            <h5 class="card-title text-100">Oops! The resource was not found</h5>
+            <p class="card-text text-sm text-100">
+              It seems the resource has been removed, sometimes uses removes articles or posts because they decide not to be visible 
+              anymore or our team has removed the content temporally.  If you think this is an error, please contact us and 
+              let us know about the problem.
+            </p>
+            <a [routerLink]="['/feed']" routerLinkActive="router-link-active"  class="btn btn-thyroo btn-sm">
+              <small>
+                <span class="mr-3 ml-3">
+                  <strong>Return to home</strong>
+                </span>
+              </small>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card mb-3" *ngIf="article">
+    <div class="card-body">
+      <hr>
+      <div class="card card-widget bg-white widget-user-2 mt-1">
+        <div class="widget-user-header">
+          <div class="widget-user-image">
+            <img class="img-circle elevation-2" src="{{article.user.photoUrl}}" alt="{{article.user.providerFullName}}">
+          </div>
+          <h4 class="widget-user-username">
+            <a class="text-thyroo" [routerLink]="['/user/', article.userId]" routerLinkActive="router-link-active">
+              {{article.user.providerFullName}}
+            </a>
+            <app-verified-badge-sm *ngIf="article.user.verifiedAccount"></app-verified-badge-sm>
+            <a [routerLink]="['/user/', article.userId]" class="btn btn-outline-thyroo btn-sm float-right">
+              <span class="ml-3 mr-3">
+                <small><b>View profile</b></small>
+              </span>
+            </a>
+          </h4>
+          <h6 class="widget-user-desc">
+            <span class="badge badge-dark">Author of</span>
+            {{article.title}}
+            <span class="text-100">{{article.created | timeAgo}}</span>
+          </h6>
+        </div>
+      </div>
+      <hr>
+
+      <span class="article-info" [innerHTML]="article?.description"></span>
+    </div>
+  </div>
+</div>
+
+<app-full-screen-loader *ngIf="loader"></app-full-screen-loader>

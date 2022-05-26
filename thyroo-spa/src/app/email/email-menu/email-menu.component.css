@@ -1,0 +1,4 @@
+@import url('../assets/style.css');
+.my-matches-list {
+    max-height: 370px;
+}

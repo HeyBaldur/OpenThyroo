@@ -1,0 +1,38 @@
+<a>
+  <div class="card">
+    <div class="card-body">
+      <h6>Ask for advice. Professional negotiators often assume that asking the other party for advice will convey
+        weakness, inexperience, or both<br>
+        <small>
+          But in fact, in one recent study, participants rated partners who asked them for advice to be more competent
+          than partners who didn’t ask for advice, Brooks, Wharton School professor Maurice Schweitzer, and Harvard
+          Business School professor Francesca Gino found.
+          <a class="text-thyroo" href="https://www.pon.harvard.edu/uncategorized/5-good-negotiation-techniques/" target="_blank">
+            Read more
+          </a>
+        </small>
+      </h6>
+    </div>
+  </div>
+</a>
+
+<div class="mt-1">
+  <div class="card is-users mt-1">
+    <div class="card-footer">
+      <label>
+        Newest people
+      </label>
+      <div class="likers-group">
+        <img *ngFor="let user of users" popover="{{user.providerFullName}}" triggers="mouseenter:mouseleave"
+          src="{{user.photoUrl}}" data-demo-src="assets/images/avatars/dan.jpg" data-user-popover="1" alt="">
+      </div>
+      <p class="people text-center">
+        <a *ngFor="let names of users" class="text-muted text-sm" [routerLink]="['/user/', names.id]">
+          {{names.providerFullName}}
+        </a>
+      </p>
+    </div>
+  </div>
+  <app-aside-skeleton-loader *ngIf="skeleton"></app-aside-skeleton-loader>
+</div>
+<app-help-links></app-help-links>

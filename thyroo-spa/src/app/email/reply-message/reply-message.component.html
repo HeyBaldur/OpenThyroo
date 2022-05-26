@@ -1,0 +1,50 @@
+<form [formGroup]="emailForm" (ngSubmit)="sendReply()">
+  <div class="mt-2">
+    <div class="form-group">
+      <quill-editor formControlName="emailBody" name="emailBody" [required]="true">
+        <div quill-editor-toolbar>
+          <span class="ql-formats">
+            <button class="ql-bold" [title]="'Bold'"></button>
+          </span>
+          <span class="ql-formats">
+            <select class="ql-align" [title]="'Aligment'">
+              <option selected></option>
+              <option value="center"></option>
+              <option value="right"></option>
+              <option value="justify"></option>
+            </select>
+            <select class="ql-align" [title]="'Aligment2'">
+              <option selected></option>
+              <option value="center"></option>
+              <option value="right"></option>
+              <option value="justify"></option>
+            </select>
+          </span>
+          <span class="ql-formats">
+            <button type="button" class="ql-code-block">
+              <svg viewBox="0 0 18 18">
+                <polyline class="ql-even ql-stroke" points="5 7 3 9 5 11"></polyline>
+                <polyline class="ql-even ql-stroke" points="13 7 15 9 13 11"></polyline>
+                <line class="ql-stroke" x1="10" x2="8" y1="5" y2="13"></line>
+              </svg>
+            </button>
+          </span>
+        </div>
+      </quill-editor>
+
+      <div class="row">
+        <div class="col-md-12">
+          <span class="text-danger mr-auto ml-3"
+            *ngIf="emailForm.controls['emailBody'].touched && emailForm.controls['emailBody'].hasError('required')">
+            <small>Please add a message</small>
+          </span>
+          <button [disabled]="!emailForm.valid" type="submit" class="btn btn-thyroo btn-sm mt-2 mr-3 float-right">
+            <small class="mr-3 ml-3">
+              <i class="far fa-envelope"></i> Send
+            </small>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

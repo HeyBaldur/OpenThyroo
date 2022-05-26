@@ -1,0 +1,30 @@
+{
+    "deploy.reloaded": {
+        "packages": [
+            {
+                "name": "Version 1.0.0",
+                "description": "Package version 1.0.0",
+
+                "files": [
+                    "thyroo-api/bin/Release/netcoreapp3.0/publish/**"
+                ]
+            }
+        ],
+
+        "targets": [
+            {
+                "type": "sftp",
+                "name": "Linux",
+                "description": "SFTP folder",
+
+                "host": "167.71.109.101", "port": 22,
+                "user": "root", "password": "DDevelopmeNt@2020**_oo",
+
+                "dir": "/var/thyroo",
+                "mappings": {
+                    "thyroo-api/bin/Release/netcoreapp3.0/publish/**": "/"
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,38 @@
+<!-- SHARED BUTTON IN SHARED MODULE -->
+<button type="button" class="nav-link btn btn-xs text-white btn-danger" data-toggle="modal" data-target="#addModal">
+  <span class="ml-2 mr-2">
+    <small><strong>Add new post</strong></small>
+  </span>
+</button>
+
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModal"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add new question</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="addPost">
+        <div class="modal-body">
+          <p class="p-sm-12 text-muted">
+            Tips on getting good answers quickly
+            Make sure your question has not been asked already
+            Keep your question short and to the point
+            Double-check grammar and spelling
+          </p>
+          <textarea formControlName="post" name="post" class="form-control" id="post"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-sm btn-primary">
+            <span class="mr-3 ml-3">
+              Add new post
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

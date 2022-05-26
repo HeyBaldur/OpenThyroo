@@ -1,0 +1,73 @@
+<div class="card mt-1" *ngIf="articles?.length === 0">
+  <div class="card-body">
+    <h5 class="card-title text-100">You don't have articles</h5>
+    <p class="card-text text-100 text-sm">
+      Writing Thyroo articles will improve your business. How, you ask? Thyroo is an
+      amazing platform for entrepreneurs and professionals. It is a social media site that allows
+      for networking, job seeking, and sharing specialized information. One of the main features
+      of Thyroo is the ability to write articles to share on your page. You have the freedom
+      to write whatever you want, whenever you want. It can be about your experiences, your
+      knowledge in an area, or a professional opinion you would like to express. What you may
+      not know is that writing Thyroo articles is important for personal branding.
+      By creating a piece of writing that is unique to you and your profession/business,
+      you are branding yourself. Your words become attached to your job and then promote your business.
+    </p>
+    <a [routerLink]="['/articles/new']" class="text-thyroo mt-2">
+      <small>
+        <strong>Add article</strong>
+        <span class="text-100"> on Thyroo</span>
+        BETA
+      </small>
+    </a>
+  </div>
+</div>
+
+<div class="card mt-1" *ngIf="articles?.length !== 0">
+  <div class="card-body">
+    <a [routerLink]="['/articles/new']" class="text-thyroo mt-2 add-article">
+      <small>
+        <strong>Add article</strong>
+        <span class="text-100"> on Thyroo</span>
+        BETA
+      </small>
+    </a>
+    <table class="table text-sm table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Headline</th>
+          <th scope="col">Published</th>
+          <th scope="col">Article</th>
+          <th scope="col">Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let article of articles">
+          <th scope="row">
+            {{article.title | slice: 0:50}}...
+            <app-delete-article [itemId]="articleId" [deleteConfirmation]="deleteConfirmation" [articleId]="article.id"
+              (postToRemove)="deleteArticle($event)" (visibleChange)="cancelDeleting($event)"></app-delete-article>
+          </th>
+          <th><span class="text-100">{{article.created | timeAgo}}</span></th>
+          <td>
+            <a [routerLink]="['/articles/', article.id]" class="text-thyroo" routerLinkActive="router-link-active">
+              View article
+            </a>
+          </td>
+          <td>
+            <span>
+              <a (click)="removeArticle(article.id)" class="text-thyroo pointer">
+                <i class="fas fa-trash-alt"></i>
+              </a>
+              <a [routerLink]="['/articles/update/', article.id]" class="text-thyroo ml-1">
+                <i class="far fa-edit"></i>
+              </a>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<app-full-screen-loader *ngIf="loader"></app-full-screen-loader>

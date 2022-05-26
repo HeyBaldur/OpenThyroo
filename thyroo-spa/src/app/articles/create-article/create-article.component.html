@@ -1,0 +1,133 @@
+<app-navigation></app-navigation>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 pr-1">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a [routerLink]="['/feed']" class="text-thyroo text-100">Feed</a></li>
+          <li class="breadcrumb-item"><a [routerLink]="['/help/Thyroo']" routerLinkActive="router-link-active"
+              class="text-thyroo text-100">How to create a good article</a></li>
+        </ol>
+      </nav>
+
+      <div *ngIf="notFound">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <img src="https://img.icons8.com/clouds/100/000000/broken-link.png" />
+                <h5 class="card-title text-100">Whoops! The resource was not found</h5>
+                <p class="card-text text-sm text-100">
+                  It seems the resource has been removed, sometimes uses removes articles or posts because they decide
+                  not to be visible
+                  anymore or our team has removed the content temporally. If you think this is an error, please contact
+                  us and
+                  let us know about the problem.
+                </p>
+                <a [routerLink]="['/feed']" routerLinkActive="router-link-active" class="btn btn-thyroo btn-sm">
+                  <small>
+                    <span class="mr-3 ml-3">
+                      <strong>Return to home</strong>
+                    </span>
+                  </small>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form *ngIf="articleForm" [formGroup]="articleForm">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Write an article <span class="text-100">BETA</span><br><small>Get more customers by sharing an interesting
+                article</small></h5>
+            <app-create-article-error *ngIf="articleError"></app-create-article-error>
+            <div class="form-group">
+              <input type="text" formControlName="title" name="title" class="form-control form-control-sm mb-1"
+                placeholder="Enter an article headline" required>
+              <small class="form-text text-danger"
+                *ngIf="articleForm.controls['title'].touched && articleForm.controls['title'].hasError('required')">
+                Please add a headline
+              </small>
+            </div>
+            <div class="form-group">
+              <quill-editor formControlName="description" name="description" required>
+                <div quill-editor-toolbar>
+                  <span class="ql-formats">
+                    <select class="ql-header">
+                      <option value="1">Title</option>
+                      <option value="2">Title</option>
+                      <option value="3">Title</option>
+                      <option value="4">Title</option>
+                    </select>
+                  </span>
+                  <span class="ql-formats">
+                    <button class="ql-bold"></button>
+                    <button class="ql-italic"></button>
+                  </span>
+                  <span class="ql-formats">
+                    <button class="ql-list" value="ordered"></button>
+                    <button class="ql-list" value="bullet"></button>
+                  </span>
+                  <span class="ql-formats">
+                    <button class="ql-link"></button>
+                    <button class="ql-image"></button>
+                  </span>
+                </div>
+              </quill-editor>
+              <small class="text-danger form-text"
+                *ngIf="articleForm.controls['description'].touched && articleForm.controls['description'].hasError('required')">
+                Please add your content
+              </small>
+
+              <small class="text-muted form-text" *ngIf="articleForm.controls['description'].hasError('minlength')">
+                You need at least 2000 characters for posting your article
+              </small>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a [routerLink]="['/profile']" routerLinkActive="router-link-active" class="text-muted">
+              <small>
+                Cancel
+              </small>
+            </a>
+            <button *ngIf="!isUpdate" [disabled]="articleForm.invalid" class="btn btn-thyroo btn-sm float-right"
+              (click)="addArticle()" type="submit">
+              <small class="ml-3 mr-3">
+                <strong>Add article</strong>
+              </small>
+            </button>
+            <button *ngIf="isUpdate" [disabled]="articleForm.invalid" class="btn btn-thyroo btn-sm float-right"
+              (click)="updateArticle()" type="submit">
+              <small class="ml-3 mr-3">
+                <strong>Update article</strong>
+              </small>
+            </button>
+          </div>
+        </div>
+      </form>
+      <div class="card" *ngIf="unauthorized">
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            <p class="text-100">
+              It seems the resource that you are trying to update does not exist or you have no permissions to update.
+              If you have not created any article yet, come on! This is the time.
+            </p>
+            <a [routerLink]="['/articles/new']" class="text-thyroo mt-2">
+              <small>
+                <strong>Add article</strong>
+                <span class="text-100"> on Thyroo</span>
+              </small>
+            </a>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 pl-1">
+      <app-latest-users></app-latest-users>
+    </div>
+  </div>
+</div>
+
+<app-full-screen-loader *ngIf="loader"></app-full-screen-loader>

@@ -1,0 +1,219 @@
+<button type="button" class="btn btn-thyroo btn-sm" data-toggle="modal" data-target="#exampleModal">
+  <span class="ml-3 mr-3">
+    <small><b>
+        Add/Update a business profile
+      </b>
+    </small>
+  </span>
+</button>
+<div class="modal" id="exampleModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{mainTitle}}</h5>
+        <button type="button" #closebutton class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <form *ngIf="validateForm" [formGroup]="profileForm" (ngSubmit)="submitForm()">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <small class="form-text text-muted">Add a summary to improve the possibilities of connections:<span
+                    class="text-danger">*</span></small>
+                <div class="mt-2">
+                  <ckeditor [editor]="postEditor" class="myPost mb-2" [config]="{ toolbar: [ 'bold' ] }"
+                    formControlName="summary" required>
+                  </ckeditor>
+                  <small class="text-danger" *ngIf="profileForm.controls['summary'].hasError('required') && 
+                      profileForm.controls['summary'].touched">
+                    Field required
+                  </small>
+                </div>
+              </div>
+              <hr>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <small class="form-text text-muted">Occupation:<span class="text-danger">*</span></small>
+                <input autocomplete="off" [typeaheadScrollable]="true" [typeahead]="careers" (typeaheadNoResults)="typeaheadNoCareers($event)"
+                  class="form-control-sm form-control mt-1" placeholder="Type an occupation e.g. Software developer"
+                  formControlName="occupation" name="occupation">
+                <small class="text-danger" *ngIf="profileForm.controls['occupation'].hasError('required') && 
+                      profileForm.controls['occupation'].touched">
+                  Field required
+                </small>
+                <p class="text-danger mt-1 text-sm" *ngIf="careersNoFound">
+                  We have not found any results. A piece of wrong information might cause an account blocking.
+                    <strong>We strongly recommend adding real information.</strong>
+                </p>
+              </div>
+              <div class="form-group">
+                <small class="form-text text-muted">City:<span class="text-danger">*</span></small>
+                <input autocomplete="off" (typeaheadNoResults)="typeaheadNoLocations($event)" formControlName="city"
+                  name="city" [typeahead]="states" [typeaheadScrollable]="true" class="form-control-sm form-control mt-1"
+                  placeholder="Type a location e.g. Houston">
+                <small class="form-text text-muted below-legend">
+                  <strong>City</strong>
+                  is a private option, however, if you add a city, it can improve connections possibilities in 55%
+                </small>
+                <small class="text-danger" *ngIf="profileForm.controls['city'].hasError('required') && 
+                      profileForm.controls['city'].touched">
+                  Field required
+                </small>
+                <p class="text-danger mt-1 text-sm" *ngIf="locationsNoFound">
+                  We have not found any results. A piece of wrong information might cause an account blocking.
+                    <strong>We strongly recommend adding real information.</strong>.
+                    Thyroo is only available for USA, Canada, Poland and Costa Rica.
+                </p>
+              </div>
+              <div class="form-group">
+                <small class="form-text text-muted">Accomplishments:</small>
+                <input type="text" class="form-control-sm form-control mt-1" formControlName="accomplishments"
+                  name="accomplishments" placeholder="Accomplishments">
+              </div>
+              <div class="form-group">
+                <small class="form-text text-muted">Skill set:</small>
+                <input type="text" class="form-control-sm form-control mt-1" formControlName="skillSet" name="skillSet"
+                  placeholder="Skill set: e.i">
+              </div>
+              <div class="form-group">
+                <small class="form-text text-muted">Email contact:<span class="text-danger">*</span></small>
+                <input readonly type="text" class="form-control-sm form-control mt-1" formControlName="emailContact"
+                  name="emailContact" placeholder="Email contact" required>
+                <small class="text-danger" *ngIf="profileForm.controls['emailContact'].hasError('required') && 
+                      profileForm.controls['emailContact'].touched">
+                  Field required
+                </small>
+              </div>
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" formControlName="emailContactHidden"
+                  name="emailContactHidden" id="emailContactHidden">
+                <label class="custom-control-label text-muted" for="emailContactHidden"><small>Hide email
+                    contact</small></label>
+              </div>
+              <!-- <div class="form-group">
+                <small class="form-text text-muted">I am from:<span class="text-danger">*</span></small>
+                <select formControlName="countryId" name="countryId" class="form-control form-control-sm mt-2" required>
+                  <option *ngFor="let country of countryList" value="{{country.id}}">
+                    <span>{{country.name}}</span>
+                  </option>
+                </select>
+                <small class="text-danger" *ngIf="profileForm.controls['countryId'].hasError('required') && 
+                      profileForm.controls['countryId'].touched">
+                  Field required
+                </small>
+              </div> -->
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <small class="form-text text-muted">Known as:<span class="text-danger">*</span></small>
+                <input readonly type="text" class="form-control-sm form-control mt-1" formControlName="knowAs" name="knowAs"
+                  placeholder="Know as" required>
+                <small class="text-danger" *ngIf="profileForm.controls['knowAs'].hasError('required') && 
+                      profileForm.controls['knowAs'].touched">
+                  Field required
+                </small>
+              </div>
+              <div class="form-group">
+                <small class="form-text text-muted">Location:</small>
+                <input type="text" class="form-control-sm form-control mt-1" formControlName="address" name="address"
+                  placeholder="40-061 Katowice">
+                <small class="form-text text-muted below-legend">
+                  <strong>A location</strong>
+                  is a private option, however, if you add a location, it can improve connections possibilities in 75%
+                </small>
+              </div>
+              <!-- <div class="form-group">
+                <small class="form-text text-muted">Experience years:</small>
+                <input type="number" class="form-control-sm form-control mt-1" formControlName="experienceYears"
+                  name="experienceYears" placeholder="Experience years">
+                <small class="text-danger" *ngIf="profileForm.controls['experienceYears'].hasError('required') && 
+                      profileForm.controls['experienceYears'].touched">
+                  Field required
+                </small>
+              </div>
+              <div class="form-group">
+                <small class="form-text text-muted">Legend:</small>
+                <input type="text" class="form-control-sm form-control mt-1" formControlName="legend" name="legend"
+                  placeholder="Legend">
+              </div> -->
+
+              <div class="form-group">
+                <small class="form-text text-muted">Company name:<span class="text-danger">*</span></small>
+                <input type="text" autocomplete="off" autofocus="off" class="form-control-sm form-control mt-1" formControlName="companyName"
+                  name="companyName" placeholder="Company/Start-up name">
+                <small class="text-danger" *ngIf="profileForm.controls['companyName'].hasError('required') && 
+                      profileForm.controls['companyName'].touched">
+                  Field required
+                </small>
+              </div>
+
+              <div class="form-group">
+                <small class="form-text text-muted">Website:</small>
+                <input type="text" autocomplete="off" autofocus="off" class="form-control-sm form-control mt-1" formControlName="website"
+                  name="website" placeholder="Website e.g. https://thyroo.com">
+              </div>
+
+              <div class="form-group">
+                <small class="form-text text-muted">Phone contact:</small>
+                <input type="text" class="form-control-sm form-control mt-1" formControlName="phoneContact"
+                  name="phoneContact" placeholder="Phone contact">
+              </div>
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" formControlName="phoneContactVisibleHidden"
+                  name="phoneContactVisibleHidden" id="phoneContactVisibleHidden">
+                <label class="custom-control-label" for="phoneContactVisibleHidden"><small>Hide phone
+                    number</small></label>
+              </div>
+              <!-- <div class="form-group">
+                <small class="form-text text-muted">I am available in:<span class="text-danger">*</span></small>
+                <select formControlName="availableForId" name="availableForId" class="form-control form-control-sm mt-2"
+                  required>
+                  <option *ngFor="let country of countryList" value="{{country.id}}">
+                    <span>{{country.name}}</span>
+                  </option>
+                </select>
+                <small class="text-danger" *ngIf="profileForm.controls['availableForId'].hasError('required') && 
+                      profileForm.controls['availableForId'].touched">
+                  Field required
+                </small>
+              </div> -->
+            </div>
+            <div class="col-md-12">
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" formControlName="currentlyActive"
+                  name="currentlyActive" id="currentlyActive">
+                <label class="custom-control-label text-muted" for="currentlyActive">
+                  <small>
+                    I am currently active looking for new opportunities
+                  </small>
+                </label>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <hr>
+              <p class="p-sm-12 text-muted mt-2">
+                A business profile is a very important section where you can let users know you, your interests, and
+                what are your purposes to be
+                in Thyroo.com we also strongly recommend you to write specific descriptions in all the fields above.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary btn-sm mr-auto" data-dismiss="modal">
+            <span class="ml-3 mr-3">
+              <small><b>Close</b></small>
+            </span>
+          </button>
+          <button type="submit" class="btn btn-outline-thyroo btn-sm" [disabled]="!profileForm.valid">
+            <span class="ml-3 mr-3">
+              <small><b>Save changes</b></small>
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
