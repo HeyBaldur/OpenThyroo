@@ -27,3 +27,25 @@ If you want to learn, and get some extra experience, this open source project is
 - ✅ Bugs
 - ✅ Growth
 - ✅ Testing
+
+```
+cd thyroo-spa
+npm install
+```
+Once we have completed this process we can run
+```
+ng serve -o
+```
+Create a database in MySQL or MSSQL and run the first migration.
+
+```
+dotnet ef migrations add InitialCreate
+```
+Verify, your database contains the right information, if you need help with this process, please feel free to ask in our slack channel https://OpenThyroo.slack.com
+
+After this, we can open .NET solution. You should be able to see everything just one click. you can navigate to.
+
+```
+thyroo-api\thyroo-api
+dotnet watch run
+```
